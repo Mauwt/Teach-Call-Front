@@ -1,0 +1,44 @@
+.main-container{
+    background-color: #F5F5F5;
+    /* height: 100vh; */
+}
+
+.register-options-card{
+    box-shadow: -4px 8px 20px -7px rgba(0,0,0,0.75);
+}
+
+.register-page{
+    height: 100vh;
+}
+
+.register-title{
+    /* border-top-right-radius: 15px; */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    /* background-color: #c6e0ea99; */
+}
+
+.link{
+    background-color: #add0dd2a;
+    border: 1px solid #000;
+    border-radius: 15px;
+    border-color: #00000000;
+    transition: all 0.5s ease-in-out;
+}
+
+.link:hover{
+    border-color: #94AAAD;
+}
+
+.login-bt{
+    color: #000;
+    background-color: #F5F5F5;
+    border: 1px solid #000;
+    border-radius: 15px;
+    border-color: #a0d3da;
+    transition: all 0.5s ease-in-out;
+}
+
+.login-bt:hover{
+    border-color: #52afbbf3;
+}

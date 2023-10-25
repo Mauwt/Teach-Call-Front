@@ -1,0 +1,13 @@
+.tutor-bg{
+    background: rgb(92,189,160);
+    background: -moz-linear-gradient(61deg, rgba(92,189,160,0.8295693277310925) 0%, rgba(216,247,254,0.76234243697479) 42%, rgba(77,215,228,0.24413515406162467) 91%);
+    background: -webkit-linear-gradient(61deg, rgba(92,189,160,0.8295693277310925) 0%, rgba(216,247,254,0.76234243697479) 42%, rgba(77,215,228,0.24413515406162467) 91%);
+    background: linear-gradient(61deg, rgba(92,189,160,0.8295693277310925) 0%, rgba(216,247,254,0.76234243697479) 42%, rgba(77,215,228,0.24413515406162467) 91%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5cbda0",endColorstr="#4dd7e4",GradientType=1);
+}   
+
+.tutor{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}

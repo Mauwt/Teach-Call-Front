@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Nunito:wght@200;400;500;600;700&display=swap');
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+.hero{
+    font-family: 'Inconsolata', monospace;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}

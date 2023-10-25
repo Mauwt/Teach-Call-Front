@@ -1,0 +1,38 @@
+h3{
+    color: #627389
+}
+
+.tabs{
+    overflow: hidden;
+}
+
+.main{
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,.2);
+    border-radius: 3px;
+}
+
+.login-tab{
+    background-color: #F9FBFB;
+    color: #0e141e;
+}
+
+.register-tab{
+    color: #0e141e;
+}
+.active{
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,.2);
+    position: relative;
+    z-index:1;
+    background: #fff;
+}
+.register-form{
+    
+    display: block;
+    color: inherit;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+form{
+    background-color: #fff;
+}

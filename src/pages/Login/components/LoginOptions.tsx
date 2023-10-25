@@ -36,7 +36,7 @@ export default function LoginOptions() {
             >
               <Link
                 className="text-dark mx-4 my-2"
-                to="/login"
+                to="/teacher-login"
                 role="button"
                 tabIndex={0}
                 style={{ whiteSpace: 'nowrap', textDecoration: 'none' }}

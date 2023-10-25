@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import registerHandleSubmit from '../utils/registerHandleSubmit';
 
 interface Props {
   userRole: string;
 }
 
 export default function StudentRegisterForm({ userRole }: Props) {
-  /* eslint-disable-next-line */
-  console.log(userRole);
+  const navigate = useNavigate;
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    registerHandleSubmit(e, userRole, navigate);
+  };
   return (
     <div className="main pt-0 w-25">
       <div
@@ -29,7 +33,7 @@ export default function StudentRegisterForm({ userRole }: Props) {
         </Link>
       </div>
       <div className="register-form">
-        <form className="p-4 mt-0 d-flex flex-column">
+        <form className="p-4 mt-0 d-flex flex-column" onSubmit={handleSubmit}>
           <div
             className="form-outline mb-2 d-flex flex-column justify-content-center"
             style={{ width: '100%' }}
@@ -40,12 +44,16 @@ export default function StudentRegisterForm({ userRole }: Props) {
             >
               Nombres
               <input
-                type="email"
+                type="text"
                 id="user_name"
+                name="user_name"
                 className="form-control w-75"
                 required
               />
             </label>
+            <div className="error firstName-error d-none w-75 text-dark bg-danger px-2 py-1 rounded">
+              {' '}
+            </div>
           </div>
           <div className="form-outline mb-2 d-flex flex-column justify-content-center">
             <label
@@ -54,12 +62,16 @@ export default function StudentRegisterForm({ userRole }: Props) {
             >
               Apellidos
               <input
-                type="email"
+                type="text"
                 id="user_last_name"
+                name="user_last_name"
                 className="form-control w-75"
                 required
               />
             </label>
+            <div className="error lastName-error d-none w-75 text-dark bg-danger px-2 py-1 rounded">
+              {' '}
+            </div>
           </div>
 
           <div className="form-outline mb-2">
@@ -71,10 +83,14 @@ export default function StudentRegisterForm({ userRole }: Props) {
               <input
                 type="email"
                 id="user_email"
+                name="email"
                 className="form-control w-75"
                 required
               />
             </label>
+            <div className="error email-error d-none w-75 text-dark bg-danger px-2 py-1 rounded">
+              {' '}
+            </div>
           </div>
 
           <div className="form-outline mb-2 d-flex flex-column justify-content-center">
@@ -83,21 +99,23 @@ export default function StudentRegisterForm({ userRole }: Props) {
               <input
                 type="password"
                 id="password"
+                name="password"
                 className="form-control w-75"
                 required
               />
             </label>
+            <div className="error password-error d-none w-75 text-dark bg-danger px-2 py-1 rounded">
+              {' '}
+            </div>
           </div>
 
-          <Link
+          <button
             className="text-dark mx-auto my-2 btn btn-info btn-block mb-4 "
-            to="/"
-            role="button"
-            tabIndex={0}
+            type="submit"
             style={{ whiteSpace: 'nowrap', textDecoration: 'none' }}
           >
             Sign Up
-          </Link>
+          </button>
         </form>
       </div>
     </div>

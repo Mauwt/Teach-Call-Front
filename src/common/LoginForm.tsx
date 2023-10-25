@@ -1,25 +1,16 @@
-import { Link } from 'react-router-dom';
-import { LoginReq } from '../types/Auth';
-// import { validateLoginForm } from '../utils/validateLoginForm';
-// import { AuthApi } from '../api/AuthApi';
+import { Link, useNavigate } from 'react-router-dom';
+import loginHandleSubmit from '../utils/loginHandleSubmit';
 
 interface Props {
   userRole: string;
 }
 
 export default function LoginForm({ userRole }: Props) {
+  const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const data: LoginReq = {
-      email: e.currentTarget.email.value,
-      password: e.currentTarget.password.value,
-    };
-
-    // const errors: Map<string, string> = validateLoginForm(data);s
-    console.log(data); 
+    loginHandleSubmit(e, userRole, navigate);
   };
-
   return (
     <div className="main pt-0 w-25 ">
       <div
@@ -49,12 +40,13 @@ export default function LoginForm({ userRole }: Props) {
           >
             <label
               className="form-label d-flex flex-column justify-content-center"
-              htmlFor="form2Example1"
+              htmlFor="email"
             >
               Email
               <input
                 type="email"
-                id="form2Example1"
+                id="email"
+                name="email"
                 className="form-control w-75"
                 required
               />
@@ -62,47 +54,29 @@ export default function LoginForm({ userRole }: Props) {
           </div>
 
           <div className="form-outline mb-4 d-flex flex-column justify-content-center">
-            <label className="form-label" htmlFor="form2Example2">
+            <label className="form-label" htmlFor="password">
               Contraseña
               <input
                 type="password"
-                id="form2Example2"
+                id="password"
+                name="password"
                 className="form-control w-75"
                 required
               />
             </label>
+            <div className="login-error d-none w-75 text-dark bg-danger px-2 py-1 rounded">
+              {' '}
+            </div>
           </div>
 
-          {/* <div className="row mb-4">
-            <div className="col d-flex justify-content-center">
-              <div className="form-check">
-                <label
-                  className="form-check-label"
-                  htmlFor="form2Example31"
-                  style={{ whiteSpace: 'nowrap' }}
-                >
-                  Remember me
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="form2Example31"
-                    checked
-                  />
-                </label>
-              </div>
-            </div>
-
-            <div className="col">
-              <a href="#!">Forgot password?</a>
-            </div>
-          </div> */}
-          <input
+          <button
             className="text-dark mx-auto my-4 btn btn-info btn-block mb-4 "
             type="submit"
             style={{ whiteSpace: 'nowrap', textDecoration: 'none' }}
-            value="Login"
-          />
+          >
+            {' '}
+            Login
+          </button>
 
           <div className="text-center mt-3">
             <p>

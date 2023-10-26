@@ -17,6 +17,7 @@ export default function AppRouter() {
       <Route path="/student-register" element={<StudentRegister />} />
       <Route path="/teacher-login" element={<TeacherLogin />} />
       <Route path="/teacher-register" element={<TeacherRegister />} />
+      <Route path="/dashboard/:user_role" element={<div>Dashboard</div>} />
     </Routes>
   );
 }

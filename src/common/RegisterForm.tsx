@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function StudentRegisterForm({ userRole }: Props) {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     registerHandleSubmit(e, userRole, navigate);

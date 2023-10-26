@@ -1,5 +1,5 @@
-import { NavigateFunction } from 'react-router-dom';
 import { AxiosResponse } from 'axios';
+import { NavigateFunction } from 'react-router-dom';
 import { LoginRes, RegisterReq } from '../types/Auth';
 import validateRegisterForm from './validateRegisterForm';
 import AuthApi from '../api/AuthApi';
@@ -21,8 +21,6 @@ const registerHandleSubmit = (
     role: user_role,
   };
 
-  console.log(data);
-
   const errorMessages = document.querySelectorAll('.error');
   errorMessages.forEach((message) => {
     message.classList.add('d-none');
@@ -36,21 +34,20 @@ const registerHandleSubmit = (
       error!.innerHTML = value;
     });
   }
-
-  const tokenResponse: Promise<AxiosResponse<LoginRes>> = AuthApi.login(data);
+  const tokenResponse: Promise<AxiosResponse<LoginRes>> = AuthApi.register(
+    data,
+    user_role
+  );
 
   tokenResponse
     .then((response) => {
       localStorage.setItem('token', response.data.token);
       navigate(`/dashboard/${user_role}`);
     })
-    .catch(() => {
-      console.log(`/dashboard/${user_role}`);
-      navigate('/');
-      //   if (error.response.status && error.response.status === 500) {
-      //     errorDiv!.classList.remove('d-none');
-      //     errorDiv!.innerHTML = 'Error de conexión, intente más tarde';
-      //   }
+    .catch((error) => {
+      if (error.response.status && error.response.status === 500) {
+        navigate(`/student-register`);
+      }
     });
 };
 

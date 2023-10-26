@@ -28,23 +28,24 @@ const loginHandleSubmit = async (
     return;
   }
 
-  const tokenResponse: Promise<AxiosResponse<LoginRes>> = AuthApi.login(data);
+  const tokenResponse: Promise<AxiosResponse<LoginRes>> = AuthApi.login(
+    data,
+    user_role
+  );
 
   tokenResponse
     .then((response) => {
       localStorage.setItem('token', response.data.token);
       navigate(`/dashboard/${user_role}`);
     })
-    .catch(() => {
-      console.log(`/dashboard/${user_role}`);
-      navigate('/');
-      //   if (error.response.status && error.response.status !== 500) {
-      //     errorDiv!.classList.remove('d-none');
-      //     errorDiv!.innerHTML = 'Email o contraseña incorrectos';
-      //   } else {
-      //     errorDiv!.classList.remove('d-none');
-      //     errorDiv!.innerHTML = 'Error de conexión, intente más tarde';
-      //   }
+    .catch((error) => {
+      if (error.response.status && error.response.status !== 500) {
+        errorDiv!.classList.remove('d-none');
+        errorDiv!.innerHTML = 'Email o contraseña incorrectos';
+      } else {
+        errorDiv!.classList.remove('d-none');
+        errorDiv!.innerHTML = 'Error de conexión, intente más tarde';
+      }
     });
 };
 

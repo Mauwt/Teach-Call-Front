@@ -7,13 +7,13 @@ export interface LoginRes {
   token: string;
 }
 
-export interface RegisterReq {
+export type RegisterReq = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   role: string;
-}
+};
 
 export interface RegisterRes {
   token: string;

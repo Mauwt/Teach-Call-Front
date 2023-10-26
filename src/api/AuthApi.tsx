@@ -3,12 +3,27 @@ import api from './configs/axiosConfig';
 import { LoginReq, LoginRes, RegisterReq, RegisterRes } from '../types/Auth';
 
 const AuthApi = {
-  login: async (data: LoginReq): Promise<AxiosResponse<LoginRes>> => {
-    const response = await api.post('/auth/login', { data });
+  login: async (
+    data: LoginReq,
+    user_role: string
+  ): Promise<AxiosResponse<LoginRes>> => {
+    const response = await api.post(`/auth/signin/${user_role}`, {
+      email: data.email,
+      password: data.password,
+    });
     return response;
   },
-  register: async (data: RegisterReq): Promise<AxiosResponse<RegisterRes>> => {
-    const response = await api.post('/auth/register', { data });
+  register: async (
+    data: RegisterReq,
+    user_role: string
+  ): Promise<AxiosResponse<RegisterRes>> => {
+    const response = await api.post(`/auth/signup/${user_role}`, {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+      role: data.role,
+    });
     return response;
   },
   logout: (): void => {

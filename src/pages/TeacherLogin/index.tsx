@@ -31,7 +31,7 @@ export default function TeacherLogin() {
           Hacemos la conexión entre tu experiencia y la motivación de nuestros
           alumnos
         </p>
-        <LoginForm userRole="tutor" />
+        <LoginForm userRole="teacher" />
       </div>
     </>
   );

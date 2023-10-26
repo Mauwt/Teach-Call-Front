@@ -31,7 +31,7 @@ export default function TeacherRegister() {
           alumnos
         </p>
 
-        <StudentRegisterForm userRole="tutor" />
+        <StudentRegisterForm userRole="teacher" />
       </div>
     </>
   );

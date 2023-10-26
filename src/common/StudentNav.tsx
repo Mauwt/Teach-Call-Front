@@ -2,8 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 function StickyNav() {
   return (
@@ -48,49 +48,9 @@ function StickyNav() {
                   Recursos Gratuitos
                 </NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="Tutores" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">
-                  Tutor Premium
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/login">Beneficios</NavDropdown.Item>
-              </NavDropdown>
             </Nav>
 
-            <SearchBar></SearchBar>
-
-            <ul
-              className="d-block d-sm-flex list-group flex-row align-items-center "
-              style={{ whiteSpace: 'nowrap', listStyle: 'none' }}
-            >
-              <li
-                className="d-sm-flex my-2 mx-1 py-1 px-3 text-dark border border-black rounded"
-                style={{ maxWidth: '100px', cursor: 'pointer' }}
-              >
-                <Link
-                  className="text-dark"
-                  to="/login"
-                  role="button"
-                  tabIndex={0}
-                  style={{ whiteSpace: 'nowrap', textDecoration: 'none' }}
-                >
-                  Log in
-                </Link>
-              </li>
-              <li
-                className="d-sm-flex my-2 mx-1 py-1 px-3 border rounded bg-info border-info"
-                style={{ maxWidth: '100px' }}
-              >
-                <Link
-                  className="text-dark"
-                  to="/register"
-                  role="button"
-                  tabIndex={0}
-                  style={{ whiteSpace: 'nowrap', textDecoration: 'none' }}
-                >
-                  Sign Up
-                </Link>
-              </li>
-            </ul>
+            <SearchBar />
           </Navbar.Collapse>
         </Container>
       </Navbar>

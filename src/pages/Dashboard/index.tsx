@@ -1,15 +1,11 @@
 import StudentNav from '../../common/StudentNav';
-import HomePage from '../../common/HomePage';
+import HomePage from './components/HomePage';
 
 export default function dashboardstudent() {
   return (
-    <>
+    <div className="d-flex flex-column" style={{ height: '100vh' }}>
       <StudentNav />
       <HomePage />
-      {/* left side
-        /
-        n/  */}
-      {/* <Her/o /> */}
-    </>
+    </div>
   );
 }

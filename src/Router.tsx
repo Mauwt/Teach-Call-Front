@@ -6,6 +6,7 @@ import StudentRegister from './pages/StudentRegister';
 import Register from './pages/Register';
 import TeacherLogin from './pages/TeacherLogin';
 import TeacherRegister from './pages/TeacherRegister';
+import Dashboard from './pages/Dashboard';
 
 export default function AppRouter() {
   return (
@@ -17,6 +18,7 @@ export default function AppRouter() {
       <Route path="/student-register" element={<StudentRegister />} />
       <Route path="/teacher-login" element={<TeacherLogin />} />
       <Route path="/teacher-register" element={<TeacherRegister />} />
+      <Route path="/dashboard/student" element={<Dashboard />} />
     </Routes>
   );
 }

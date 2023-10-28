@@ -3,14 +3,14 @@ import { NavigateFunction } from 'react-router-dom';
 import { LoginRes, RegisterReq } from '../types/Auth';
 import validateRegisterForm from './validateRegisterForm';
 import AuthApi from '../api/AuthApi';
+import { UserAuth } from '../context/UserAuthContext';
 
 const registerHandleSubmit = (
   e: React.FormEvent<HTMLFormElement>,
   user_role: string,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
+  setUser: (currentUser: UserAuth | null) => void
 ) => {
-  e.preventDefault();
-
   const formData = new FormData(e.currentTarget);
 
   const data: RegisterReq = {
@@ -33,7 +33,9 @@ const registerHandleSubmit = (
       error!.classList.remove('d-none');
       error!.innerHTML = value;
     });
+    return;
   }
+
   const tokenResponse: Promise<AxiosResponse<LoginRes>> = AuthApi.register(
     data,
     user_role
@@ -42,12 +44,15 @@ const registerHandleSubmit = (
   tokenResponse
     .then((response) => {
       localStorage.setItem('token', response.data.token);
-      navigate(`/dashboard/${user_role}`);
+      setUser({
+        rol: user_role,
+        token: response.data.token,
+      });
+      return navigate(`/dashboard/${user_role}`);
     })
     .catch((error) => {
-      if (error.response.status && error.response.status === 500) {
-        navigate(`/student-register`);
-      }
+      console.log(error);
+      return navigate(`/student-register`);
     });
 };
 

@@ -1,5 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import loginHandleSubmit from '../utils/loginHandleSubmit';
+import { useContext } from 'react';
+import loginHandleSubmit from '../utils/handleLoginSubmit';
+import { UserAuthContext } from '../context/UserAuthContext';
 
 interface Props {
   userRole: string;
@@ -7,9 +9,15 @@ interface Props {
 
 export default function LoginForm({ userRole }: Props) {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserAuthContext);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    loginHandleSubmit(e, userRole, navigate);
+    try {
+      loginHandleSubmit(e, userRole, navigate, setUser);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="main pt-0 w-25 ">

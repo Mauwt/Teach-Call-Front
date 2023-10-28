@@ -51,7 +51,7 @@ export default function RegisterOptions() {
                 <div className="row mx-auto w-100 d-flex flex-column justify-content-center">
                   <div className="link col-sm-10 col-md-8 d-flex flex-column w-75 mx-auto my-4">
                     <Link
-                      to="/teacher-login"
+                      to="/teacher-register"
                       className="w-100 my-2 text-decoration-none text-black "
                     >
                       <img

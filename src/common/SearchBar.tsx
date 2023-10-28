@@ -10,10 +10,7 @@ export default function SearchBar() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
-      <div
-        className="searchbar w-100 d-flex justify-content-center "
-        style={{ backgroundColor: '#f5f5f5' }}
-      >
+      <div className="searchbar w-100 d-flex justify-content-center ">
         <Form className="w-75">
           <Row className=" g-1 d-flex justify-content-center align-items-center">
             <Col>

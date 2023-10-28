@@ -1,0 +1,56 @@
+@media (max-width: 568px) {
+    .h-sm-100px {
+        height: 100px ;
+    }
+}
+
+@media (min-width: 992px) {
+    .fake-xxl {
+        width: max-content;
+    }
+
+    .f-fill-xxl {
+        flex: 1;
+    }
+}
+
+.round{
+    border: 1px solid #03BFCB;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.bookings::-webkit-scrollbar {
+    width: 3px; 
+}
+
+.bookings::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.bookings::-webkit-scrollbar-track-piece {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.categories{
+    max-height: 50%;
+    overflow-y: hidden;
+}
+
+.top-courses{
+    background-color: white;
+    margin-bottom: 24px;
+    width:21%;
+}
+
+.top-courses h5{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 16px;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

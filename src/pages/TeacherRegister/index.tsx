@@ -1,4 +1,5 @@
 import StudentRegisterForm from '../../common/RegisterForm';
+import './styles.css';
 
 export default function TeacherRegister() {
   return (
@@ -7,10 +8,7 @@ export default function TeacherRegister() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
-      <div
-        className="d-flex flex-column justify-content-center align-items-center p-4"
-        style={{ height: '100vh' }}
-      >
+      <div className="full-h d-flex flex-column justify-content-center align-items-center p-4">
         <div className="d-flex flex-row justify-content-center align-items-center mx-auto text-center">
           <div className="me-1 d-flex align-items-center justify-content-center">
             <span

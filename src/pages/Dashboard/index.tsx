@@ -1,5 +1,6 @@
 import StudentNav from '../../common/StudentNav';
 import HomePage from './components/HomePage';
+import './styles.css';
 
 export default function dashboardstudent() {
   return (

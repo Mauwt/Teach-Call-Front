@@ -3,14 +3,14 @@ import { NavigateFunction } from 'react-router-dom';
 import { LoginReq, LoginRes } from '../types/Auth';
 import validateLoginForm from './validateLoginForm';
 import AuthApi from '../api/AuthApi';
+import { UserAuth } from '../context/UserAuthContext';
 
 const loginHandleSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   user_role: string,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
+  setUser: (currentUser: UserAuth | null) => void
 ) => {
-  e.preventDefault();
-
   const formData = new FormData(e.currentTarget);
 
   const data: LoginReq = {
@@ -36,7 +36,11 @@ const loginHandleSubmit = async (
   tokenResponse
     .then((response) => {
       localStorage.setItem('token', response.data.token);
-      navigate(`/dashboard/${user_role}`);
+      setUser({
+        rol: user_role,
+        token: response.data.token,
+      });
+      return navigate(`/dashboard/${user_role}`);
     })
     .catch((error) => {
       if (error.response.status && error.response.status !== 500) {

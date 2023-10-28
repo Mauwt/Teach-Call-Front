@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import FutureClasses from './FutureClasses';
+import StudentSideBar from './SideBar';
 
 export default function HomePage() {
   return (
@@ -8,67 +8,43 @@ export default function HomePage() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-      />
-      <div className="container-fluid p-0">
-        <div className="row d-flex w-100 h-100 p-0 g-0">
-          <div className="col-3 border rounded bg-light-subtle d-flex flex-column">
-            <div className="d-flex flex-column flex-grow-2">
-              <ul
-                className="d-flex flex-column pt-5"
-                style={{ listStyle: 'none', color: 'white' }}
-              >
-                <li
-                  className="d-flex align-items-center my-3 rounded w-50 px-2 py-1"
-                  style={{ backgroundColor: 'rgb(17,17,17,0.07)' }}
-                >
-                  <span
-                    className="material-symbols-outlined me-3"
-                    style={{
-                      color: 'black',
-                    }}
-                  >
-                    space_dashboard
-                  </span>
-                  <Link
-                    to="/dashboard/student"
-                    className="w-100 text-decoration-none text-dark"
-                  >
-                    Dashboard
-                  </Link>
-                </li>
-
-                <li className="d-flex align-items-center my-2">
-                  <span
-                    className="material-symbols-outlined me-3"
-                    style={{ color: 'black' }}
-                  >
-                    draw
-                  </span>
-                  <Link to="/#" className="w-50 text-decoration-none text-dark">
-                    Notes
-                  </Link>
-                </li>
-
-                <li className="d-flex align-items-center my-4">
-                  <span
-                    className="material-symbols-outlined me-3"
-                    style={{ color: 'black' }}
-                  >
-                    comment_bank
-                  </span>
-                  <Link to="/#" className="w-50 text-decoration-none text-dark">
-                    Chats
-                  </Link>
-                </li>
-              </ul>
+      <div className="container-fluid overlflow-hidden">
+        <div className="row h-100 overflow-auto">
+          <div className="d-flex col-12 col-md-2  fake-xxl h-sm-100px px-0 bg-info sticky-top">
+            <StudentSideBar />
+          </div>
+          <div
+            className="d-flex col-12 col-md-7 col-xl-8 flex-column pt-1 pe-0"
+            style={{ backgroundColor: '#F8F9FA' }}
+          >
+            <div className="categories d-flex flex-column flex-grow-1 mt-1 pt-2 px-0 ">
+              <h3 className="" style={{ color: 'black' }}>
+                Categorias más populares
+              </h3>
+              <div className="d-flex flex-wrap justify-content-space-around mt-2 ">
+                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
+                  <h5>Matemáticas</h5>
+                </div>
+                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
+                  <h5>Matemáticas</h5>
+                </div>
+                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
+                  <h5>Matemáticas</h5>
+                </div>
+                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
+                  <h5>Matemáticas</h5>
+                </div>
+              </div>
+            </div>
+            <div className="course d-flex flex-grow-1 p-2 ">
+              <h3 style={{ color: 'black' }}>Mis cursos</h3>
             </div>
           </div>
-          <div className="col-6 ">sdafd</div>
-          <div className="col-3 d-flex flex-column px-2 pt-3  border rounded">
-            <h5 className="mt-2 mb-3 ms-2">Clases Agendadas</h5>
+          <div
+            className="d-flex col-12 col-md-3  f-fill-xxl flex-column px-0 pt-3"
+            style={{ backgroundColor: '#F8F9FA' }}
+          >
+            <h5 className="mt-0 mb-3 ms-1">Clases Agendadas</h5>
             <FutureClasses />
           </div>
         </div>

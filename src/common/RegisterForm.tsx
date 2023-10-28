@@ -1,5 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import registerHandleSubmit from '../utils/registerHandleSubmit';
+import { useContext } from 'react';
+import registerHandleSubmit from '../utils/handleRegisterSubmit';
+import { UserAuthContext } from '../context/UserAuthContext';
 
 interface Props {
   userRole: string;
@@ -7,10 +9,17 @@ interface Props {
 
 export default function StudentRegisterForm({ userRole }: Props) {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserAuthContext);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    registerHandleSubmit(e, userRole, navigate);
+    try {
+      registerHandleSubmit(e, userRole, navigate, setUser);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <div className="main pt-0 w-25">
       <div

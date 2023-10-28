@@ -2,10 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function LoginOptions() {
   return (
-    <div
-      className="container-fluid flex-grow-1 px-0"
-      // style={{ height: '100%' }}
-    >
+    <div className="container-fluid flex-grow-1 px-0">
       <div className="row g-0" style={{ height: '100%' }}>
         <div className="tutor tutor-bg col-lg-6 col-md-6-col-sm-12 d-flex justify-content-center align-items-center">
           <div

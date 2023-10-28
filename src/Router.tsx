@@ -7,10 +7,12 @@ import Register from './pages/Register';
 import TeacherLogin from './pages/TeacherLogin';
 import TeacherRegister from './pages/TeacherRegister';
 import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function AppRouter() {
   return (
     <Routes>
+      {/* Rutas de acceso publico */}
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -19,6 +21,12 @@ export default function AppRouter() {
       <Route path="/teacher-login" element={<TeacherLogin />} />
       <Route path="/teacher-register" element={<TeacherRegister />} />
       <Route path="/dashboard/student" element={<Dashboard />} />
+      {/* Rutas de acceso unico a ESTUDIANTES */}
+      <Route element={<ProtectedRoute rol="student" redirectTo="/login" />} />
+      {/* Rutas de acceso unico a PROFESORES */}
+      <Route element={<ProtectedRoute rol="teacher" redirectTo="/login" />}>
+        <Route path="/dashboard/teacher" element={<h1>Dashboar Profesor</h1>} />
+      </Route>
     </Routes>
   );
 }

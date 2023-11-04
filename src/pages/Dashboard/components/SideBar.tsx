@@ -4,7 +4,7 @@ import { UserAuthContext } from '../../../context/UserAuthContext';
 import logoutHandleSubmit from '../../../utils/logOutOnClick';
 
 export default function StudentSideBar() {
-  const { setUser } = useContext(UserAuthContext);
+  const { user, setUser } = useContext(UserAuthContext);
   const navigate = useNavigate();
   const handleLogOut = () => {
     try {
@@ -84,7 +84,7 @@ export default function StudentSideBar() {
             height="35"
             className="rounded-circle"
           />
-          <span className="d-none d-md-inline mx-1">Joe</span>
+          <span className="d-none d-md-inline mx-1">{user?.firstName}</span>
         </a>
         <ul
           className="dropdown-menu text-small shadow my-0"

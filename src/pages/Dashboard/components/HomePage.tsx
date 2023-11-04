@@ -1,5 +1,6 @@
 import FutureClasses from './FutureClasses';
 import StudentSideBar from './SideBar';
+import TopCourses from './TopCourses';
 
 export default function HomePage() {
   return (
@@ -22,18 +23,7 @@ export default function HomePage() {
                 Categorias más populares
               </h3>
               <div className="d-flex flex-wrap justify-content-space-around mt-2 ">
-                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
-                  <h5>Matemáticas</h5>
-                </div>
-                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
-                  <h5>Matemáticas</h5>
-                </div>
-                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
-                  <h5>Matemáticas</h5>
-                </div>
-                <div className="top-courses  rounded-3  mx-3 px-2 py-2">
-                  <h5>Matemáticas</h5>
-                </div>
+                <TopCourses />
               </div>
             </div>
             <div className="course d-flex flex-grow-1 p-2 ">

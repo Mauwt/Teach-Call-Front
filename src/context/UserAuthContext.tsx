@@ -3,6 +3,9 @@
 import { ReactNode, createContext, useState } from 'react';
 
 export type UserAuth = {
+  email: string | null;
+  firstName: string | null;
+  lastName: string | null;
   rol: string | null;
   token: string | null;
 };

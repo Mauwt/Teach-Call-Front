@@ -8,6 +8,7 @@ import TeacherLogin from './pages/TeacherLogin';
 import TeacherRegister from './pages/TeacherRegister';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProfessorTour from './pages/ProfessorTour';
 
 export default function AppRouter() {
   return (
@@ -25,6 +26,7 @@ export default function AppRouter() {
       <Route element={<ProtectedRoute rol="student" redirectTo="/login" />} />
       {/* Rutas de acceso unico a PROFESORES */}
       <Route element={<ProtectedRoute rol="teacher" redirectTo="/login" />}>
+        <Route path="/professor-tour" element={<ProfessorTour />} />
         <Route path="/dashboard/teacher" element={<h1>Dashboar Profesor</h1>} />
       </Route>
     </Routes>

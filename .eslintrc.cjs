@@ -24,5 +24,8 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'react/react-in-jsx-scope': 'off',
+    'no-param-reassign': 0,
+    'react/destructuring-assignment': 0,
+    'jsx-a11y/label-has-associated-control': 0,
   },
 };

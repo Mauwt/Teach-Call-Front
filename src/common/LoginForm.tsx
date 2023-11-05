@@ -13,11 +13,7 @@ export default function LoginForm({ userRole }: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      loginHandleSubmit(e, userRole, navigate, setUser);
-    } catch (error) {
-      console.log(error);
-    }
+    loginHandleSubmit(e, userRole, navigate, setUser);
   };
   return (
     <div className="main pt-0 w-25 ">

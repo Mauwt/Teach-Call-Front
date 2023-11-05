@@ -7,6 +7,7 @@ export type UserAuth = {
   firstName: string | null;
   lastName: string | null;
   rol: string | null;
+  tourCompleted: boolean | null;
   token: string | null;
 };
 

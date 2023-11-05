@@ -10,6 +10,54 @@ type AddEducationProps = {
   description: string;
 };
 
+function displayErrorMessage(dateError: Element | null, messageText: string) {
+  if (dateError) {
+    const message = dateError.querySelector('.message');
+    if (message) {
+      message.textContent = messageText;
+    }
+    dateError.classList.remove('d-none');
+    dateError.classList.add('d-flex');
+  }
+}
+
+/* eslint-disable-next-line */
+function validateForm(endDate: Date, startDate: Date, formValues: any) {
+  const dateError = document.querySelector('.date-error');
+  dateError?.classList.add('d-none');
+  dateError?.classList.remove('d-flex');
+
+  if (endDate <= startDate) {
+    displayErrorMessage(
+      dateError,
+      'La fecha de fin no puede ser menor o igual a la fecha de inicio'
+    );
+    return false;
+  }
+
+  if (endDate > new Date()) {
+    displayErrorMessage(
+      dateError,
+      'La fecha de fin no puede ser mayor a la fecha actual'
+    );
+    return false;
+  }
+
+  if (formValues.degree === '' || formValues.schoolName === '') {
+    const eduError = document.querySelector('.edu-error');
+    if (eduError) {
+      const message = eduError.querySelector('.message');
+      if (message) message.textContent = 'Por favor, completa todos los campos';
+      eduError.classList.remove('d-none');
+      eduError.classList.add('d-flex');
+    }
+
+    return false;
+  }
+
+  return true;
+}
+
 export default function AddEducation(props: AddEducationProps) {
   const [formValues, setFormValues] = useState({
     degree: '',
@@ -25,6 +73,8 @@ export default function AddEducation(props: AddEducationProps) {
 
   const handleSubmit = async () => {
     if (!user) return navigate('/login');
+    if (!validateForm(endDate, startDate, formValues)) return null;
+
     try {
       await ProfessorApi.addCategories({
         email: user.email,
@@ -62,6 +112,8 @@ export default function AddEducation(props: AddEducationProps) {
         imgUrl: ' ',
       });
 
+      await ProfessorApi.setCompletedTour(user.email ?? '');
+
       return navigate('/dashboard/teacher');
     } catch (error) {
       return navigate('/login');
@@ -80,6 +132,7 @@ export default function AddEducation(props: AddEducationProps) {
             type="text"
             className="form-control"
             id="degree"
+            placeholder="Ej: Maestría en Ingeniería de Software"
             onChange={(e) =>
               setFormValues({ ...formValues, degree: e.target.value })
             }
@@ -93,6 +146,7 @@ export default function AddEducation(props: AddEducationProps) {
             type="text"
             className="form-control"
             id="schoolName"
+            placeholder="Ej: MIT"
             onChange={(e) =>
               setFormValues({ ...formValues, schoolName: e.target.value })
             }
@@ -117,6 +171,12 @@ export default function AddEducation(props: AddEducationProps) {
               setEndDate(date);
             }}
           />
+        </div>
+        <div className="date-error w-55 d-none justify-content-center align-item-center bg-danger rounded-2 mt-4 mb-0 p-2">
+          <p className="message text-dark my-0" />
+        </div>
+        <div className="edu-error w-55 d-none justify-content-center align-item-center bg-danger rounded-2 mt-4 mb-0 p-2">
+          <p className="message text-dark my-0" />
         </div>
 
         <div className="d-flex justify-content-end align-items-center me-4  my-2 dark w-100">

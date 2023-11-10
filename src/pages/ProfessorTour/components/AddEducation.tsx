@@ -1,8 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useNavigate } from 'react-router-dom';
 import ProfessorApi from '../../../api/ProfessorApi';
-import { UserAuthContext } from '../../../context/UserAuthContext';
 import { Category } from '../../../api/CategoryApi';
 
 type AddEducationProps = {
@@ -68,22 +67,22 @@ export default function AddEducation(props: AddEducationProps) {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
 
-  const { user } = useContext(UserAuthContext);
+  const userEmail = localStorage.getItem('email');
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (!user) return navigate('/login');
+    if (!userEmail) return navigate('/login');
     if (!validateForm(endDate, startDate, formValues)) return null;
 
     try {
       await ProfessorApi.addCategories({
-        email: user.email,
+        email: localStorage.getItem('email'),
         categories: props.categories
           .filter((category) => category.selected)
           .map((category) => category.id),
       });
 
-      await ProfessorApi.addDescription(user.email ?? '', props.description);
+      await ProfessorApi.addDescription(userEmail, props.description);
 
       const startDay = startDate.getDate();
       const startMonth = startDate.getMonth();
@@ -103,7 +102,7 @@ export default function AddEducation(props: AddEducationProps) {
         .toString()
         .padStart(2, '0')}/${endYear}`;
 
-      await ProfessorApi.addEducation(user.email, {
+      await ProfessorApi.addEducation(userEmail, {
         degree: formValues.degree,
         description: formValues.description,
         startDate: StartDateFormatted,
@@ -112,7 +111,7 @@ export default function AddEducation(props: AddEducationProps) {
         imgUrl: ' ',
       });
 
-      await ProfessorApi.setCompletedTour(user.email ?? '');
+      await ProfessorApi.setCompletedTour(userEmail ?? '');
 
       return navigate('/dashboard/teacher');
     } catch (error) {

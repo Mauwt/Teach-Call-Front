@@ -43,7 +43,10 @@ const registerHandleSubmit = (
 
   tokenResponse
     .then((response) => {
+      localStorage.removeItem('token');
       localStorage.setItem('token', response.data.token);
+      localStorage.removeItem('email');
+      localStorage.setItem('email', response.data.user.email);
       setUser({
         email: response.data.user.email,
         firstName: response.data.user.firstName,
@@ -55,8 +58,7 @@ const registerHandleSubmit = (
       if (user_role === 'teacher') return navigate('/professor-tour');
       return navigate(`/dashboard/${user_role}`);
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
       return navigate(`/student-register`);
     });
 };

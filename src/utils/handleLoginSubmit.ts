@@ -36,7 +36,10 @@ const loginHandleSubmit = async (
 
   tokenResponse
     .then((response) => {
+      localStorage.removeItem('token');
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('email', response.data.user.email);
+
       setUser({
         email: response.data.user.email,
         firstName: response.data.user.firstName,

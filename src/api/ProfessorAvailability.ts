@@ -6,15 +6,14 @@ import {
   WeekAndDayAvailabilityResponse,
 } from './types/ProfessorAvailability';
 
-const headers = {
-  Authorization: `Bearer ${localStorage.getItem('token')}`,
-};
-
 const AvailabilityApi = {
   getWeekAvailibility: async (
     email: string,
     weekNumber: number
   ): Promise<AxiosResponse<WeekAvailabilityRes>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     const response = await api.get(
       `/availability/weekly/${email}?week=${weekNumber}`,
       { headers }
@@ -27,6 +26,9 @@ const AvailabilityApi = {
     weekNumber: number,
     timeRanges: Record<number, TimeRange>
   ): Promise<AxiosResponse<WeekAvailabilityRes>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     const data = {
       professorEmail: email,
       weekNumber,
@@ -42,6 +44,9 @@ const AvailabilityApi = {
     weekNumber: number,
     dayNumber: number
   ): Promise<AxiosResponse<WeekAndDayAvailabilityResponse>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
     const response = await api.get(
       `/availability/day/${email}/${weekNumber}/${dayNumber}`,
       { headers }

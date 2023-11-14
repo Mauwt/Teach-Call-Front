@@ -88,6 +88,7 @@ async function setWeekDays(
   document
     .getElementsByClassName('day-selected')[0]
     ?.classList.remove('day-selected');
+  document.getElementsByClassName('today')[0]?.classList.remove('today');
   const days = getWeekDays(weekOffset);
   const weekNumber = getWeekNumber(weekOffset);
   const slots = document.querySelectorAll('.day-slot');
@@ -98,6 +99,10 @@ async function setWeekDays(
     );
 
     const { availableDays } = response.data;
+
+    const currentDayNumber = new Date().getDay() - 1;
+    console.log(currentDayNumber);
+    const currentWeekNumber = getWeekNumber();
 
     slots.forEach((slot, i) => {
       setAvailabilityStatus(1);
@@ -117,6 +122,10 @@ async function setWeekDays(
         slot.classList.add('available');
         slot.classList.remove('disabled');
       }
+
+      if (weekNumber === currentWeekNumber && dayNumber === currentDayNumber) {
+        slot.classList.add('today');
+      }
     });
   } catch (error) {
     const err = error as AxiosError;
@@ -128,6 +137,13 @@ async function setWeekDays(
         slot.classList.remove('available');
       });
     }
+  } finally {
+    const todayNumber = new Date().getDay() - 1;
+    const currentWeekNumber = getWeekNumber();
+    const todaySlot = document.getElementById(
+      `${currentWeekNumber}-${todayNumber}`
+    );
+    if (todaySlot) todaySlot.classList.add('today');
   }
 }
 
@@ -147,6 +163,7 @@ export default function WeekSchedule() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('WeekSchedule.tsx: useEffect()');
     const userEmail = localStorage.getItem('email');
     if (!userEmail) {
       navigate('/login');

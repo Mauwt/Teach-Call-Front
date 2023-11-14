@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@popperjs/core": "^2.11.8",
     "@types/typed.js": "^2.0.9",
     "antd": "^5.11.0",
@@ -29,6 +30,7 @@
     "typed.js": "^2.0.16"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.27",
     "@types/node": "^20.8.8",
     "@types/react": "^18.2.15",
     "@types/react-datepicker": "^4.19.1",

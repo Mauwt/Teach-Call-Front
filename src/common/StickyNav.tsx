@@ -3,8 +3,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import AuthApi from '../api/AuthApi';
 
 function StickyNav() {
+  const isAuthenticated = AuthApi.isAuthenticated();
   return (
     <>
       <link
@@ -14,21 +16,21 @@ function StickyNav() {
       <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
         <Container fluid>
           <Navbar.Brand className="d-flex align-items-center justify-content-center">
-            <div
-              className="me-1 d-flex align-items-center"
-              style={{ height: '100%' }}
-            >
-              <span
-                className="material-symbols-outlined"
-                style={{ color: '#6A9BD2' }}
-              >
-                school
-              </span>
-            </div>
             <Link
-              to="/"
+              to={isAuthenticated ? '/dashboard/student' : '/'}
               className="text-decoration-none text-dark d-flex align-items-center"
             >
+              <div
+                className="me-1 d-flex align-items-center"
+                style={{ height: '100%' }}
+              >
+                <span
+                  className="material-symbols-outlined"
+                  style={{ color: '#6A9BD2' }}
+                >
+                  school
+                </span>
+              </div>
               TeachCall
             </Link>
           </Navbar.Brand>

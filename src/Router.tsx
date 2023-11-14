@@ -10,6 +10,9 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProfessorTour from './pages/ProfessorTour';
 import TeacherDashboard from './pages/TeacherDashboard';
+import TeacherSearch from './pages/TeacherSearch';
+import TeacherProfilePage from './pages/TeacherProfilePage';
+import TeacherFeed from './pages/TeacherFeed';
 
 export default function AppRouter() {
   return (
@@ -24,6 +27,13 @@ export default function AppRouter() {
       <Route path="/teacher-register" element={<TeacherRegister />} />
       <Route path="/dashboard/student" element={<Dashboard />} />
       <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
+      <Route path="/search/teacher?">
+        <Route index element={<TeacherSearch />} />
+        <Route path=":search" element={<TeacherSearch />} />
+      </Route>
+      <Route path="/comunidad" element={<TeacherFeed />} />
+
+      <Route path="/profile/teacher" element={<TeacherProfilePage />} />
 
       {/* Rutas de acceso unico a ESTUDIANTES */}
       <Route element={<ProtectedRoute rol="student" redirectTo="/login" />} />

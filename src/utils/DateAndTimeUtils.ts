@@ -32,3 +32,17 @@ export function formatHHatoHHmm(time: string) {
   const hours = time.split(' ')[0];
   return `${hours}:00`;
 }
+
+export function getDateFromWeekOffset(day: number, weekOffset: number) {
+  const date = new Date();
+  date.setDate(date.getDate() + weekOffset * 7);
+
+  const dayOffset = day - date.getDay();
+  date.setDate(date.getDate() + dayOffset);
+
+  const formattedDate = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
+
+  return formattedDate;
+}

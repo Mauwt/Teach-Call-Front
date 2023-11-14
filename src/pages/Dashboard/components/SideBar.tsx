@@ -53,20 +53,7 @@ export default function StudentSideBar() {
             </span>
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            to="/dashboard/student"
-            className="nav-link px-md-0 px-2 d-flex align-items-center justify-content-center"
-          >
-            <span
-              className="material-symbols-outlined p-0 m-0 "
-              style={{ color: 'black' }}
-            >
-              home
-            </span>
-            <span className="ms-1 pt-1 d-none d-md-inline text-dark">Home</span>
-          </Link>
-        </li>
+        <li className="nav-item" />
       </ul>
       <div className="dropdown py-md-4 mt-md-auto ms-auto ms-md-2 flex-shrink-1">
         <a

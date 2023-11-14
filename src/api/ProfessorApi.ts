@@ -10,7 +10,6 @@ const ProfessorApi = {
     education: ProfessorEducation
   ): Promise<AxiosResponse<string>> => {
     const headers = {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
 
@@ -65,6 +64,66 @@ const ProfessorApi = {
       }
     );
 
+    return response;
+  },
+  getAllWithPagination: async (
+    page: number = 1
+  ): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(`${API_PREFIX}?page=${page}`, { headers });
+    return response;
+  },
+  getAllByCategoryWithPagination: async (
+    category: string,
+    page: number = 1
+  ): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(
+      `${API_PREFIX}/category?page=${page}&category=${category}`,
+      { headers }
+    );
+    return response;
+  },
+  getDescriptionByEmail: async (email: string): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(`${API_PREFIX}/description/${email}`, {
+      headers,
+    });
+    return response;
+  },
+  getLastEducationAndExperienceByEmail: async (
+    email: string
+  ): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(`${API_PREFIX}/experience/last/${email}`, {
+      headers,
+    });
+    return response;
+  },
+  getAllEduacationWithPaginationByEmail: async (
+    email: string,
+    page: number = 1
+  ): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(
+      `${API_PREFIX}/education/${email}?page=${page}`,
+      { headers }
+    );
     return response;
   },
 };

@@ -21,7 +21,7 @@ function displayErrorMessage(dateError: Element | null, messageText: string) {
 }
 
 /* eslint-disable-next-line */
-function validateForm(endDate: Date, startDate: Date, formValues: any) {
+export function validateForm(endDate: Date, startDate: Date, formValues: any) {
   const dateError = document.querySelector('.date-error');
   dateError?.classList.add('d-none');
   dateError?.classList.remove('d-flex');

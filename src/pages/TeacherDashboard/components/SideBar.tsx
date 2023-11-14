@@ -29,7 +29,7 @@ export default function StudentSideBar() {
       >
         <li className="nav-item mt-2 mb-1">
           <Link
-            to="/dashboard/student"
+            to="/dashboard/teacher"
             className="nav-link px-md-0 px-2 d-flex align-items-center justify-content-center"
           >
             <span className="material-symbols-outlined">schedule</span>
@@ -40,7 +40,7 @@ export default function StudentSideBar() {
         </li>
         <li className="nav-item mb-1">
           <Link
-            to="/dashboard/student"
+            to="/comunidad"
             className="nav-link px-md-0 px-2 d-flex align-items-center justify-content-center"
           >
             <span
@@ -83,9 +83,9 @@ export default function StudentSideBar() {
             </a>
           </li>
           <li>
-            <a className="dropdown-item" href="/#">
+            <Link to="/profile/teacher" className="dropdown-item">
               Profile
-            </a>
+            </Link>
           </li>
           <li>
             <hr className="dropdown-divider" />

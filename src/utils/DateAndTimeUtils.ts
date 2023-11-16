@@ -46,3 +46,21 @@ export function getDateFromWeekOffset(day: number, weekOffset: number) {
 
   return formattedDate;
 }
+
+export function getMonthFromMonthNumber(monthNumber: number) {
+  const months = [
+    ' Enero ',
+    ' Febrero ',
+    ' Marzo ',
+    ' Abril ',
+    ' Mayo ',
+    ' Junio ',
+    ' Julio ',
+    ' Agosto ',
+    ' Septiembre ',
+    ' Octubre ',
+    ' Noviembre ',
+    ' Diciembre ',
+  ];
+  return months[monthNumber];
+}

@@ -20,6 +20,7 @@ export const UserAuthContext = createContext<IUserAuthContext>({} as IUserAuthCo
 
 export function UserAuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserAuth | null>(null);
+  
 
   return (
     <UserAuthContext.Provider value={{ user, setUser }}>

@@ -1,5 +1,5 @@
 export type DayTimeSlot = {
-  slotId: number;
+  id: number;
   startTime: string;
   endTime: string;
   isAvailable: boolean;

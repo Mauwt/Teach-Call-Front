@@ -44,11 +44,8 @@ function daySlots(
         weekNum,
         dayNum
       );
-
       setDayInfo(response.data);
       setAvailabilityStatus(0);
-
-      console.log(JSON.stringify(response.data, null, 2));
 
       const dayContainer = document.getElementById('day-container');
 
@@ -163,7 +160,6 @@ export default function WeekSchedule() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('WeekSchedule.tsx: useEffect()');
     const userEmail = localStorage.getItem('email');
     if (!userEmail) {
       navigate('/login');

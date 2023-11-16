@@ -21,6 +21,19 @@ const AvailabilityApi = {
 
     return response;
   },
+  getWeekAvailibilityById: async (
+    id: number,
+    weekNumber: number
+  ): Promise<AxiosResponse> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    const response = await api.get(`/availability/${id}?week=${weekNumber}`, {
+      headers,
+    });
+
+    return response;
+  },
   setWeekAvailability: async (
     email: string,
     weekNumber: number,
@@ -49,6 +62,20 @@ const AvailabilityApi = {
     };
     const response = await api.get(
       `/availability/day/${email}/${weekNumber}/${dayNumber}`,
+      { headers }
+    );
+    return response;
+  },
+  getfreeTimeSlots: async (
+    teacherId: number,
+    wekkNumber: number,
+    dayNumber: number
+  ) => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    const response = await api.get(
+      `/availability/free/${teacherId}?week=${wekkNumber}&day=${dayNumber}`,
       { headers }
     );
     return response;

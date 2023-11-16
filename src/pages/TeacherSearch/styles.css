@@ -1,0 +1,144 @@
+@media (max-width: 568px) {
+    .h-sm-100px {
+        height: 100px ;
+    }
+}
+
+@media (min-width: 992px) {
+    .fake-xxl {
+        width: max-content;
+    }
+
+    .f-fill-xxl {
+        flex: 1;
+    }
+}
+
+.round{
+    border: 1px solid #03BFCB;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.bookings::-webkit-scrollbar {
+    width: 3px; 
+}
+
+.bookings::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.bookings::-webkit-scrollbar-track-piece {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.categories{
+    max-height: 50%;
+    overflow-y: hidden;
+}
+
+.top-courses{
+    background-color: white;
+    margin-bottom: 24px;
+    width:21%;
+}
+
+.top-courses h5{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 16px;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.day-slot{
+    background-color: white;
+    border: 1px solid #E5E5E5;
+}
+
+.day-slot:hover{
+    background-color: #ffce85;
+    cursor: pointer;
+}
+
+.day-slot > .day-name{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.day-slot > .day-number{
+    color : #000000;
+}
+.day-container{
+    min-height: 460px;
+    height: fit-content;
+    background-color: #efeded9e;
+    border: 1px solid #e5e5e59a;
+}
+
+.week-schedule-form{
+    background-color: #efeded9e;
+}
+
+.disabled{
+    pointer-events: none;
+    opacity: 0.4;
+    background-color: #e5e5e59a;
+}
+
+.disabled-date{
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.available{
+    pointer-events: auto;
+    opacity: 1;
+    background-color: #f8d7b5;
+}
+
+.schedule-icon{
+    color: #525252;
+    transition: 0.3s;
+}
+
+.schedule-icon:hover{
+    color: black;
+}
+
+.day-selected{
+    background-color: #ffce85a1 !important;
+    font-weight: 600;
+
+}
+
+.today{
+    border: 2px solid #AEC8D1 !important;
+    border-radius: 3px;
+    font-weight: 800;
+}
+
+.rounded-end-top{
+    border-top-right-radius: 0.25rem !important;
+}
+
+.rounded-end-bottom{
+    border-bottom-right-radius: 0.25rem !important;
+}
+
+.rounded-start-top{
+    border-top-left-radius: 0.25rem !important;
+}
+
+.rounded-start-bottom{
+    border-bottom-left-radius: 0.25rem !important;
+}

@@ -13,6 +13,7 @@ import TeacherDashboard from './pages/TeacherDashboard';
 import TeacherSearch from './pages/TeacherSearch';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import TeacherFeed from './pages/TeacherFeed';
+import TeacherAvailability from './pages/TeacherAvailability';
 
 export default function AppRouter() {
   return (
@@ -34,6 +35,7 @@ export default function AppRouter() {
       <Route path="/comunidad" element={<TeacherFeed />} />
 
       <Route path="/profile/teacher" element={<TeacherProfilePage />} />
+      <Route path="/availability/teacher" element={<TeacherAvailability />} />
 
       {/* Rutas de acceso unico a ESTUDIANTES */}
       <Route element={<ProtectedRoute rol="student" redirectTo="/login" />} />

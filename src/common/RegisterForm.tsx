@@ -21,7 +21,7 @@ export default function StudentRegisterForm({ userRole }: Props) {
   };
 
   return (
-    <div className="main pt-0 w-25">
+    <div className={`main pt-0 ${userRole === 'teacher' ? 'w-50' : 'w-25'}`}>
       <div
         className="tabs d-flex flex-row align-items-center"
         role="navigation"

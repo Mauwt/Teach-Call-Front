@@ -39,6 +39,7 @@ const loginHandleSubmit = async (
       localStorage.removeItem('token');
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('firstName', response.data.user.firstName);
 
       setUser({
         email: response.data.user.email,

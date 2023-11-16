@@ -23,6 +23,10 @@ export default function StudentSideBar() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      />
       <ul
         className="nav nav-pills flex-md-column flex-row flex-nowrap flex-shrink-1 flex-md-grow-0 flex-grow-1 mb-md-auto mb-0 mt-0 mt-md-3 justify-content-center align-items-center align-items-md-start"
         id="menu"
@@ -32,7 +36,12 @@ export default function StudentSideBar() {
             to="/dashboard/teacher"
             className="nav-link px-md-0 px-2 d-flex align-items-center justify-content-center"
           >
-            <span className="material-symbols-outlined">schedule</span>
+            <span
+              className="material-symbols-outlined"
+              style={{ fontSize: 30 }}
+            >
+              calendar_month
+            </span>
             <span className="ms-1 pt-1 d-none d-md-inline text-dark">
               Mis horarios
             </span>
@@ -45,7 +54,7 @@ export default function StudentSideBar() {
           >
             <span
               className="material-symbols-outlined"
-              style={{ color: 'black' }}
+              style={{ color: 'black', fontSize: 30 }}
             >
               groups
             </span>

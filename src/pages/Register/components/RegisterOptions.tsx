@@ -11,7 +11,10 @@ export default function RegisterOptions() {
         <div className="row w-100 ">
           <div className="col-sm-10 col-md-8 p-0 mx-auto">
             <div className="register-options-card p-0 mx-auto border rounded-4 d-block d-sm-flex">
-              <div className="register-title container m-0 py-2 text-dark text-center bg-info d-flex flex-column">
+              <div
+                className="register-title container m-0 py-2 text-dark text-center d-flex flex-column"
+                style={{ backgroundColor: '#C9EDEB' }}
+              >
                 <div className="logo-container d-flex align-items-center m-0 rounded-4 pt-2 ps-2">
                   <span
                     className="material-symbols-outlined"
@@ -20,9 +23,9 @@ export default function RegisterOptions() {
                     school
                   </span>
                 </div>
-                <div className="d-flex flex-column justify-content-center text-white">
-                  <h2 className="mx-auto mt-5 mb-4">Bienvenido</h2>
-                  <div className="w-75  rounded-4 mx-auto text-center mb-3">
+                <div className="d-flex flex-column justify-content-center ">
+                  <h2 className="mx-auto mt-5 mb-4 ">Bienvenido</h2>
+                  <div className="w-75  rounded-4 mx-auto text-center mb-3  text-dark">
                     <p
                       className="m-0 mb-3 p-0 text-center"
                       style={{ lineHeight: '30px' }}

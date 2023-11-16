@@ -7,7 +7,7 @@ function TopCourseCard(prop: TopCourseRes) {
   return (
     <Link
       to="/#"
-      className="rounded-3 mx-3 my-2 px-2 pt-2 d-flex flex-column bg-info w-25 text-decoration-none"
+      className="rounded-1 mx-3 my-2 px-2 pt-2 d-flex flex-column bg-info w-25 text-decoration-none"
     >
       <div className="d-flex justify-content-space-between">
         <link
@@ -16,20 +16,25 @@ function TopCourseCard(prop: TopCourseRes) {
         />
         <div>
           <h5
-            className="w-75 text-break text-decoration-none"
-            style={{ fontSize: '12px', color: 'black' }}
+            className="w-75 text-line-break text-decoration-none"
+            style={{ fontSize: '24px', color: 'black' }}
           >
             {prop.title}
           </h5>
         </div>
-        <div className="mx-auto">
+        <div
+          className="mx-auto flex-fill d-flex justify-content-end"
+          style={{ minHeight: '50px' }}
+        >
           <span
-            className="material-symbols-outlined"
-            style={{ color: 'yellow' }}
+            className="material-symbols-outlined me-2"
+            style={{ color: 'yellow', fontSize: 30 }}
           >
             social_leaderboard
           </span>
-          <p style={{ color: '#f5f5f5' }}>{prop.rating.toPrecision(2)}</p>
+          <p className="mt-1" style={{ color: '#f5f5f5' }}>
+            {prop.rating.toPrecision(2)}
+          </p>
         </div>
       </div>
       <p className="text-muted">{prop.firstName}</p>

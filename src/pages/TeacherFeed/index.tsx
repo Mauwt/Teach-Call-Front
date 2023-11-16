@@ -1,5 +1,8 @@
 import SideBar from '../TeacherDashboard/components/SideBar';
 import NewPostForm from './components/NewPostForm';
+import PostFeed from './components/PostFeed';
+
+import './styles.css';
 
 export default function TeacherFeed() {
   return (
@@ -16,10 +19,12 @@ export default function TeacherFeed() {
             <div className="h5 mb-0">Nuevo Post</div>
             <NewPostForm />
           </div>
-          <div className="d-flex flex-fill">
-            <div className="d-flex flex-column flex-shrink justify-content-center align-items-center mx-auto w-75 border">
-              <div className="h5 mb-0">Post</div>
-              <NewPostForm />
+          <div className="d-flex flex-column flex-fill mt-5 border-top w-75 mx-auto">
+            <div className="w-100 mx-auto mt-3">
+              <h5 className="fw-bold">Mis Post</h5>
+            </div>
+            <div className="d-flex flex-column flex-shrink  align-items-center mx-auto w-100 px-2">
+              <PostFeed />
             </div>
           </div>
         </div>

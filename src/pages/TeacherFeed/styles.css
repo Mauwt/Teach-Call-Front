@@ -1,0 +1,9 @@
+.likes{
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+
+.likes:hover{
+    cursor: pointer;
+    color: #e33d3d !important;
+}

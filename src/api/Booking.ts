@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import api from './configs/axiosConfig';
 
 const BookingApi = {
-  addBooking: (
+  addBooking: async (
     courseId: number,
     professorId: number,
     timeSlotId: string
@@ -21,6 +21,14 @@ const BookingApi = {
       },
       { headers }
     );
+  },
+  getStudentBookings: async (page: number) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    return api.get(`/bookings/student?page=${page}`, { headers });
   },
 };
 

@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
-import { UserAuthContext } from '../context/UserAuthContext';
 
 type ProtectedRouteProps = {
   rol: string;
@@ -9,13 +7,14 @@ type ProtectedRouteProps = {
 };
 
 export default function ProtectedRoute({ ...props }: ProtectedRouteProps) {
-  const { user } = useContext(UserAuthContext);
+  const token = localStorage.getItem('token');
+  const rol = localStorage.getItem('rol');
 
-  if (!user) {
+  if (!token) {
     return <Navigate to={props.redirectTo || '/'} />;
   }
 
-  if (user.rol === props.rol && props.children) {
+  if (rol === props.rol && props.children) {
     return props.children;
   }
 

@@ -26,11 +26,11 @@ export default function AppRouter() {
       <Route path="/student-register" element={<StudentRegister />} />
       <Route path="/teacher-login" element={<TeacherLogin />} />
       <Route path="/teacher-register" element={<TeacherRegister />} />
-      <Route path="/dashboard/student" element={<Dashboard />} />
       <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
       <Route path="/search/teacher?">
         <Route index element={<TeacherSearch />} />
         <Route path=":search" element={<TeacherSearch />} />
+        <Route path="?professorId=:professorId" element={<TeacherSearch />} />
       </Route>
       <Route path="/comunidad" element={<TeacherFeed />} />
 
@@ -38,7 +38,9 @@ export default function AppRouter() {
       <Route path="/availability/teacher" element={<TeacherAvailability />} />
 
       {/* Rutas de acceso unico a ESTUDIANTES */}
-      <Route element={<ProtectedRoute rol="student" redirectTo="/login" />} />
+      <Route element={<ProtectedRoute rol="student" redirectTo="/login" />}>
+        <Route path="/dashboard/student" element={<Dashboard />} />
+      </Route>
 
       {/* Rutas de acceso unico a PROFESORES */}
       <Route element={<ProtectedRoute rol="teacher" redirectTo="/login" />}>

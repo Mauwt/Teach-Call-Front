@@ -46,6 +46,7 @@ export default function TopCourses() {
   const [courses, setCourses] = useState<TopCourseRes[]>([]);
 
   useEffect(() => {
+    console.log('fetching courses');
     async function fetchCourses() {
       const topFiveCourses = await CourseApi.getTopFiveCourses();
 

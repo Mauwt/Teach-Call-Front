@@ -26,6 +26,18 @@ const PostApi = {
     const response = await api.get(`${API_PREFIX}/myposts`, { headers });
     return response;
   },
+  addLike: async (postId: string): Promise<AxiosResponse> => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    const response = await api.post(
+      `${API_PREFIX}/like/${postId}`,
+      {},
+      { headers }
+    );
+    return response;
+  },
 };
 
 export default PostApi;

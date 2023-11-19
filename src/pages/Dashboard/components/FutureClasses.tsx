@@ -1,25 +1,22 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import BookingApi from '../../../api/Booking';
+import { getExplicitStringDate } from '../../../utils/DateAndTimeUtils';
 import userlogo from '../../../assets/descarga.png';
 
-interface ProfessorDataProps {
+type BookingDataProps = {
+  startTime: string;
+  date: string;
+  title: string;
   firstName: string;
   lastName: string;
-  email: string;
-  password: string;
-}
+  link: string;
+};
 
-interface BookingData {
-  title: string;
-  description: string;
-  pricePerHour: number;
-  professorData: ProfessorDataProps;
-}
+function ClassCard(bookingData: BookingDataProps) {
+  const bookingDate = getExplicitStringDate(bookingData.date);
+  const bookingStartTime = bookingData.startTime.slice(0, 5);
 
-interface BookingDataProps {
-  userData: BookingData;
-}
-
-function ClassCard({ userData }: BookingDataProps) {
   return (
     <div
       className="booking-card d-flex  border rounded mb-3"
@@ -47,19 +44,18 @@ function ClassCard({ userData }: BookingDataProps) {
               className="d-inline lh-1"
               style={{ fontSize: '15px', fontWeight: 900 }}
             >
-              Martes 14 de Octubre
+              {bookingDate}
             </p>
             <p className=" my-0 lh-2 text-muted">
               <b className="d-none d-lg-inline" style={{ fontSize: '14px' }}>
                 Profesor
               </b>{' '}
-              {userData.professorData.firstName}{' '}
-              {userData.professorData.lastName}
+              {bookingData.firstName} {bookingData.lastName}
             </p>
-            <p className="mt-0 lh-1 text-muted">Física</p>
+            <p className="mt-0 lh-1 text-muted">{bookingData.title}</p>
           </div>
           <div className="d-flex flex-column align-items-end">
-            <p className="d-inline mt-1 me-3 "> 4:00pm</p>
+            <p className="d-inline mt-1 me-3 "> {bookingStartTime}</p>
             <Link
               to="/#"
               className="d-flex align-items-center text-decoration-none text-dark me-2 mt-3"
@@ -81,29 +77,53 @@ function ClassCard({ userData }: BookingDataProps) {
 }
 
 export default function FutureClasses() {
-  const testUserData = {
-    title: 'Matematicas',
-    description: 'Clase de matematicas',
-    pricePerHour: 10,
-    professorData: {
-      firstName: 'Juan',
-      lastName: 'Perez',
-      email: 'juan.perez@teachcall.com',
-      password: '1234',
-    },
-  };
+  const [userBookings, setUserBookings] = useState([]);
+  const [islastPage, setIsLastPage] = useState(false);
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    const fetchUserBookings = async () => {
+      try {
+        const response = await BookingApi.getStudentBookings(page);
+        setUserBookings(response.data.content);
+        setIsLastPage(response.data.last);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUserBookings();
+  }, [page]);
   return (
     <div
       className="bookings d-flex flex-column flex-grow-2 rounded overflow-auto pe-2 me-3"
       style={{ height: '450px', backgroundColor: '#F8F9FA' }}
     >
-      <ClassCard userData={testUserData} />
-      <ClassCard userData={testUserData} />
-      <ClassCard userData={testUserData} />
-      <ClassCard userData={testUserData} />
-      <ClassCard userData={testUserData} />
-      <ClassCard userData={testUserData} />
-      <ClassCard userData={testUserData} />
+      {userBookings.map((booking: BookingDataProps) => (
+        <ClassCard
+          key={booking.title + booking.date + booking.startTime}
+          startTime={booking.startTime}
+          date={booking.date}
+          title={booking.title}
+          firstName={booking.firstName}
+          lastName={booking.lastName}
+          link={booking.link}
+        />
+      ))}
+      <div
+        className={`${islastPage ? 'd-none' : 'd-flex'} justify-content-center`}
+      >
+        {!islastPage && (
+          <button
+            type="button"
+            className="btn btn-primary mt-2 mb-3"
+            onClick={() => setPage(page + 1)}
+          >
+            Ver más
+          </button>
+        )}
+      </div>
     </div>
   );
 }

@@ -54,3 +54,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+.like-btn:disabled{
+    border: none;
+    opacity: 0.2;
+}

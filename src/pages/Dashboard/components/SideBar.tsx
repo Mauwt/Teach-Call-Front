@@ -3,8 +3,12 @@ import { useContext } from 'react';
 import { UserAuthContext } from '../../../context/UserAuthContext';
 import logoutHandleSubmit from '../../../utils/logOutOnClick';
 
-export default function StudentSideBar() {
-  const { user, setUser } = useContext(UserAuthContext);
+type SideBarProps = {
+  setShowCourses: (showCourses: boolean) => void;
+};
+
+export default function StudentSideBar(props: SideBarProps) {
+  const { setUser } = useContext(UserAuthContext);
   const navigate = useNavigate();
   const handleLogOut = () => {
     try {
@@ -24,9 +28,11 @@ export default function StudentSideBar() {
         id="menu"
       >
         <li className="nav-item mt-2 mb-1">
-          <Link
-            to="/dashboard/student"
-            className="nav-link px-md-0 px-2 d-flex align-items-center justify-content-center"
+          <div
+            className="d-flex justify-content-center align-items-center w-100"
+            role="button"
+            onClick={() => props.setShowCourses(true)}
+            tabIndex={0}
           >
             <span
               className="material-symbols-outlined p-0 m-0 "
@@ -35,12 +41,14 @@ export default function StudentSideBar() {
               home
             </span>
             <span className="ms-1 pt-1 d-none d-md-inline text-dark">Home</span>
-          </Link>
+          </div>
         </li>
-        <li className="nav-item mb-1">
-          <Link
-            to="/dashboard/student"
-            className="nav-link px-md-0 px-2 d-flex align-items-center justify-content-center"
+        <li className="nav-item mb-1 ">
+          <div
+            className="d-flex justify-content-center align-items-center w-100"
+            role="button"
+            onClick={() => props.setShowCourses(false)}
+            tabIndex={0}
           >
             <span
               className="material-symbols-outlined"
@@ -51,7 +59,7 @@ export default function StudentSideBar() {
             <span className="ms-1 pt-1 d-none d-md-inline text-dark">
               Comunidad
             </span>
-          </Link>
+          </div>
         </li>
         <li className="nav-item" />
       </ul>

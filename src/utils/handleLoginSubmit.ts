@@ -40,6 +40,7 @@ const loginHandleSubmit = async (
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('email', response.data.user.email);
       localStorage.setItem('firstName', response.data.user.firstName);
+      localStorage.setItem('role', user_role);
 
       setUser({
         email: response.data.user.email,

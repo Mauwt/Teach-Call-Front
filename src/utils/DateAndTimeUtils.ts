@@ -64,3 +64,11 @@ export function getMonthFromMonthNumber(monthNumber: number) {
   ];
   return months[monthNumber];
 }
+
+export function getExplicitStringDate(date: string) {
+  const dayNumber = date.split('-')[2];
+  const dayName = getDayName(new Date(date).getDay());
+  const monthNumber = date.split('-')[1];
+  const monthName = getMonthFromMonthNumber(parseInt(monthNumber, 10) - 1);
+  return `${dayName} ${dayNumber} de ${monthName}`;
+}

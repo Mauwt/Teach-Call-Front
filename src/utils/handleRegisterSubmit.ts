@@ -48,6 +48,7 @@ const registerHandleSubmit = (
       localStorage.removeItem('email');
       localStorage.setItem('email', response.data.user.email);
       localStorage.setItem('firstName', response.data.user.firstName);
+      localStorage.setItem('role', user_role);
       setUser({
         email: response.data.user.email,
         firstName: response.data.user.firstName,

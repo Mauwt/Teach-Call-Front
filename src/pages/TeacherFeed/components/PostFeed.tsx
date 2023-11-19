@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { tr } from 'date-fns/locale';
 import PostApi from '../../../api/PostApi';
 
 export default function PostFeed() {
@@ -12,6 +11,7 @@ export default function PostFeed() {
       const response = await PostApi.getCurrentUserPostWithPagination();
       setPosts(response.data.content);
       setIsLastPage(response.data.last);
+      console.log(response.data.content[0]);
     };
     fetchPosts();
   }, [currentPage]);

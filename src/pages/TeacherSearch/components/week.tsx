@@ -34,7 +34,7 @@ function daySlots(
     const element = event.currentTarget;
     const elementId = event.currentTarget.id;
 
-    element.classList.toggle('day-selected');
+    element.classList.add('day-selected');
     const weekNum: number = parseInt(elementId.split('-')[0], 10);
     const dayNum: number = parseInt(elementId.split('-')[1], 10);
 
@@ -44,7 +44,7 @@ function daySlots(
         weekNum,
         dayNum
       );
-      console.log(response.data);
+
       setDayInfo(response.data);
 
       if (setShowSlots) setShowSlots(true);
@@ -66,7 +66,6 @@ function daySlots(
           dayContainer.classList.add('w-100');
         }
       }
-      console.log(err.response?.status);
     }
   }
   return (
@@ -181,7 +180,6 @@ export default function Week(prop: WeekProps) {
         document.getElementById('courseModal').classList.remove('show');
       }
     } catch (error) {
-      console.log(error);
       const modal = document.getElementById('courseModal');
       modal.appendChild(
         document.createTextNode(
@@ -197,12 +195,12 @@ export default function Week(prop: WeekProps) {
     setFirstDayMonth(days[0].getMonth());
     setLastDay(days[5].getDate());
     setLastDayMonth(days[5].getMonth());
-  }, [weekOffset, prop.teacherId, days]);
+  }, [weekOffset, prop.teacherId]);
 
   return (
     <>
       <div
-        className="container-fluid m-0 p-0 show-week"
+        className="container-fluid m-0 p-0 show-week mb-3"
         id={`week-${prop.teacherId}`}
         key={`week-${prop.teacherId}`}
       >
@@ -338,6 +336,13 @@ export default function Week(prop: WeekProps) {
                 </button>
               </div>
             ))}
+          </div>
+        )}
+        {showSlots && dayInfo.length === 0 && (
+          <div className="d-flex flex-column align-items-center justify-content-center w-50 mx-auto my-4">
+            <p className="text-muted text-center">
+              No hay horarios disponibles para este día
+            </p>
           </div>
         )}
       </div>

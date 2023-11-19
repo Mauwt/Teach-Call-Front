@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { set } from 'date-fns';
 import CourseApi from '../../../api/CourseApi';
 
 type CourseListProps = {
@@ -23,10 +22,7 @@ export default function CourseList(prop: CourseListProps) {
         setContent(response.data.content);
         setIsLastPage(response.data.last);
         setIsContentAvailable(true);
-
-        console.log(content);
       } catch (error) {
-        console.log(error);
         setIsContentAvailable(false);
       }
     };
@@ -34,9 +30,9 @@ export default function CourseList(prop: CourseListProps) {
   }, [prop.teacherId, currentPage]);
 
   const handleCheckboxChange = (event) => {
-    // Unchecke every other checked input and check the current target
-
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+      'input[type="checkbox"]'
+    );
     checkboxes.forEach((checkbox) => {
       if (checkbox.checked && checkbox !== event.currentTarget) {
         checkbox.checked = false;
@@ -44,7 +40,6 @@ export default function CourseList(prop: CourseListProps) {
     });
     event.currentTarget.checked = true;
     prop.setSelectedCourseId(event.currentTarget.id.split('-')[1]);
-    console.log(event.currentTarget.id.split('-')[1]);
   };
 
   return (

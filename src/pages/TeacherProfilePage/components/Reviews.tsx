@@ -2,15 +2,13 @@ import { useEffect, useState } from 'react';
 import ReviewApi from '../../../api/ReviewApi';
 
 function Reviews() {
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [isLastPage, setIsLastPage] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isLastPage, setIsLastPage] = useState(false);
   const [reviews, setReviews] = useState<any[]>([]);
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         const email = localStorage.getItem('email');
-        console.log(email);
-        console.log(currentPage);
 
         const response = await ReviewApi.getReviewsByProfessorEmail(
           email,
@@ -19,7 +17,6 @@ function Reviews() {
         );
 
         if (response.data) {
-          console.log(response.data);
           setReviews(response.data.content);
         }
       } catch (err) {
@@ -31,26 +28,31 @@ function Reviews() {
 
   return (
     <>
-      <h2 className="">Lo que tus alumnos dicen de ti</h2>
-      {reviews.map((review) => (
-        <div key={review.id} className="card my-3">
-          <div className="card-body">
-            <h5 className="card-title">{review.studentName}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
-              {new Date(review.createdAt).toLocaleDateString()}
-            </h6>
-            <p className="card-text">{review.body}</p>
-            <div className="rating">
-              {[...Array(review.rating)].map((_, i) => (
-                <span key={i} className="fa fa-star checked" />
-              ))}
-              {[...Array(5 - review.rating)].map((_, i) => (
-                <span key={i} className="fa fa-star" />
-              ))}
+      <h3 className="text-dark text-center mt-2">Lo que tus alumnos opinan</h3>
+      <div
+        className="overflow-auto d-flex flex-column reviews ps-0 ms-0 pe-1"
+        style={{ height: '70vh' }}
+      >
+        {reviews.map((review) => (
+          <div key={review.id} className="card my-3">
+            <div className="card-body">
+              <h5 className="card-title">{review.studentName}</h5>
+              <h6 className="card-subtitle mb-2 text-muted">
+                {new Date(review.createdAt).toLocaleDateString()}
+              </h6>
+              <p className="card-text">{review.body}</p>
+              <div className="rating">
+                {[...Array(review.rating)].map((_, i) => (
+                  <span key={`star-${i + 1}`} className="fa fa-star checked" />
+                ))}
+                {[...Array(5 - review.rating)].map((_, i) => (
+                  <span key={`no-start-${i + 1}`} className="fa fa-star" />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }

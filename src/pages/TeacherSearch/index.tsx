@@ -16,7 +16,7 @@ export default function TeacherSearch() {
   const [professorId] = useSearchParams();
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    if (professorId) {
+    if (professorId.get('professorId')) {
       ProfessorApi.getById(professorId.get('professorId')).then((response) => {
         setContent([response.data]);
         setIsContentAvailable(true);

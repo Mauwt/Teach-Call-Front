@@ -208,64 +208,66 @@ export default function WeekSchedule() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
-      <div className="w-75 mx-auto d-flex align-items-center mt-5 mb-1 mx-3">
-        <button
-          type="button"
-          className="prev-week d-inline btn btn-primary border py-0"
-          onClick={handlePrevWeek}
-          disabled={weekOffset === 0}
-        >
-          <span className="material-symbols-outlined d-flex align-items-center">
-            chevron_left
-          </span>
-        </button>
-        <button
-          type="button"
-          className="next-week d-inline btn btn-primary border py-0 mx-2 "
-          onClick={handleNextWeek}
-          disabled={weekOffset === 3}
-        >
-          <span className="material-symbols-outlined d-flex align-items-center">
-            chevron_right
-          </span>
-        </button>
-      </div>
-      <div
-        className="week-container row d-flex justify-content-around mx-auto w-75 mt-0"
-        style={{ height: '50px' }}
-      >
-        {days.map((day) => daySlots(day, setDayInfo, setAvailabilityStatus))}
-      </div>
-      <div className="d-flex w-75 mt-2 mx-auto">
-        <div
-          className="day-container d-flex flex-column w-100 mt-2 mx-auto rounded-4 py-3"
-          id="day-container"
-        >
-          <DayContainer
-            status={availabilityStatus}
-            showForm={showForm}
-            setShowForm={setShowForm}
-            dayInfo={dayInfo}
-            setSelectedAvailability={setSelectedAvailability}
-            setShowSlotInfo={setShowSlotInfo}
-            showSlotInfo={showSlotInfo}
-          />
+      <div className="w-100 mx-0 px-4 ">
+        <div className="w-100 mx-auto d-inline d-md-flex align-items-center mt-5 mb-1 mx-3 ">
+          <button
+            type="button"
+            className="prev-week d-inline btn btn-primary border py-0"
+            onClick={handlePrevWeek}
+            disabled={weekOffset === 0}
+          >
+            <span className="material-symbols-outlined d-flex align-items-center">
+              chevron_left
+            </span>
+          </button>
+          <button
+            type="button"
+            className="next-week d-inline btn btn-primary border py-0 mx-2 "
+            onClick={handleNextWeek}
+            disabled={weekOffset === 3}
+          >
+            <span className="material-symbols-outlined d-flex align-items-center">
+              chevron_right
+            </span>
+          </button>
         </div>
-        <div className="d-flex flex-grow-1 justifycontent mx-0 mt-2">
-          {showForm && (
-            <WeekScheduleForm
-              weekOffset={weekOffset}
-              setAvailabilityStatus={setAvailabilityStatus}
+        <div
+          className="week-container row d-flex flex-column flex-md-row justify-content-around mx-auto w-100 mt-0 overflow-x-auto"
+          style={{ height: '50px' }}
+        >
+          {days.map((day) => daySlots(day, setDayInfo, setAvailabilityStatus))}
+        </div>
+        <div className="d-flex w-100 mt-2 mx-auto ">
+          <div
+            className="day-container d-flex flex-column w-100 mt-2 mx-auto rounded-4 py-3"
+            id="day-container"
+          >
+            <DayContainer
+              status={availabilityStatus}
+              showForm={showForm}
               setShowForm={setShowForm}
-              setNewWeekDays={setWeekDays}
-            />
-          )}
-          {availabilityStatus === 0 && (
-            <BookingInfo
-              selectedAvailability={selectedAvailability}
+              dayInfo={dayInfo}
+              setSelectedAvailability={setSelectedAvailability}
+              setShowSlotInfo={setShowSlotInfo}
               showSlotInfo={showSlotInfo}
             />
-          )}
+          </div>
+          <div className="d-flex flex-grow-1 justifycontent mx-0 mt-2">
+            {showForm && (
+              <WeekScheduleForm
+                weekOffset={weekOffset}
+                setAvailabilityStatus={setAvailabilityStatus}
+                setShowForm={setShowForm}
+                setNewWeekDays={setWeekDays}
+              />
+            )}
+            {availabilityStatus === 0 && (
+              <BookingInfo
+                selectedAvailability={selectedAvailability}
+                showSlotInfo={showSlotInfo}
+              />
+            )}
+          </div>
         </div>
       </div>
     </>

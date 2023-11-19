@@ -22,7 +22,6 @@ export default function BookingInfo(prop: MettingInfoProps) {
           </p>
         </div>
       )}
-      {prop.showSlotInfo && <h1>hola</h1>}
     </div>
   );
 }

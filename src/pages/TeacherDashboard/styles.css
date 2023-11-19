@@ -4,6 +4,12 @@
     }
 }
 
+@media (max-width: 568px) {
+    .day-slot {
+        width: 100px;
+    }
+}
+
 @media (min-width: 992px) {
     .fake-xxl {
         width: max-content;
@@ -125,4 +131,18 @@
     border: 2px solid #AEC8D1 !important;
     border-radius: 3px;
     font-weight: 800;
+}
+
+.bookings::-webkit-scrollbar {
+    width: 3px; 
+}
+
+.bookings::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.bookings::-webkit-scrollbar-track-piece {
+    background-color: white;
+    border-radius: 10px;
 }

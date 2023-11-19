@@ -40,28 +40,35 @@ export default function Slots(prop: SlotsProps) {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
           />
-          <span className="d-none d-md-flex material-symbols-outlined align-items-center">
+          <span
+            className="d-none d-md-flex material-symbols-outlined align-items-center"
+            style={{ fontSize: '14px' }}
+          >
             schedule
           </span>
         </div>
-        <div className="d-none d-sm-flex flex-md-column justify-content-center">
+        <div
+          className="d-none d-sm-flex flex-md-column justify-content-center"
+          style={{ fontSize: '15px' }}
+        >
           {slot.startTime} - {slot.endTime}
         </div>
-        <div className="d-none d-md-flex justify-content-center ms-3">
+        <div className="d-none d-md-flex justify-content-center ms-md-5">
           <button
             type="button"
-            className="btn btn-primary border py-0"
+            className="btn btn-dark border py-0"
             onClick={onClickShowInfo}
           >
-            <span className="align-items-center">
-              {prop.showForm ? 'cerrar' : 'mostrar info'}
+            <span className="align-items-center" style={{ fontSize: '14px' }}>
+              {prop.showForm ? 'cerrar' : 'ver info'}
             </span>
           </button>
         </div>
-        <div className="d-md-none ms-3 ">
+        <div className="d-md-none ms-3 d-flex  ">
           <button
             type="button"
-            className="btn btn-primary border p-0 d-flex"
+            className="btn btn-dark border p-0 d-flex justify-content-center align-items-center me-2"
+            style={{ height: '20px', width: '20px' }}
             onClick={onClickShowInfo}
           >
             <span
@@ -71,6 +78,7 @@ export default function Slots(prop: SlotsProps) {
               info
             </span>
           </button>
+          <p> {prop.showForm ? 'cerrar' : 'ver info'}</p>
         </div>
       </div>
     </div>

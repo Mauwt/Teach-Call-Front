@@ -11,9 +11,10 @@ type BookingDataProps = {
   firstName: string;
   lastName: string;
   link: string;
+  userType?: string;
 };
 
-function ClassCard(bookingData: BookingDataProps) {
+export function ClassCard(bookingData: BookingDataProps) {
   const bookingDate = getExplicitStringDate(bookingData.date);
   const bookingStartTime = bookingData.startTime.slice(0, 5);
 
@@ -48,7 +49,7 @@ function ClassCard(bookingData: BookingDataProps) {
             </p>
             <p className=" my-0 lh-2 text-muted">
               <b className="d-none d-lg-inline" style={{ fontSize: '14px' }}>
-                Profesor
+                {bookingData.userType === 'student' ? 'Alumno' : 'Profesor'}
               </b>{' '}
               {bookingData.firstName} {bookingData.lastName}
             </p>

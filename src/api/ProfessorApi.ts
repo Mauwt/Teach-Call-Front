@@ -126,6 +126,14 @@ const ProfessorApi = {
     );
     return response;
   },
+  getById: async (id: string): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(`${API_PREFIX}/${id}`, { headers });
+    return response;
+  },
 };
 
 export default ProfessorApi;

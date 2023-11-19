@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import ProfessorApi from '../../api/ProfessorApi';
 import TeacherCard from './components/TeacherCard';
 import StudentNav from '../../common/StudentNav';
@@ -13,9 +13,15 @@ export default function TeacherSearch() {
   const [content, setContent] = useState([]);
 
   const { search } = useParams();
+  const [professorId] = useSearchParams();
   useEffect(() => {
     window.scrollTo({ top: 0 });
-    if (search) {
+    if (professorId) {
+      ProfessorApi.getById(professorId.get('professorId')).then((response) => {
+        setContent([response.data]);
+        setIsContentAvailable(true);
+      });
+    } else if (search) {
       ProfessorApi.getAllByCategoryWithPagination(search, currentPage)
         .then((response) => {
           if (response.data.content.length <= 0) {

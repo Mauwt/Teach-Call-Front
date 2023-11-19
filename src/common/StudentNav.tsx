@@ -13,8 +13,8 @@ function StickyNav() {
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
       />
       <Navbar sticky="top" expand="lg" className="flex-shrink-1">
-        <Container fluid>
-          <Navbar.Brand className="d-flex align-items-center justify-content-center">
+        <Container fluid className="justify-content-between">
+          <Navbar.Brand className="d-flex align-items-end justify-content-center">
             <Link
               to={isAuthenticated ? '/dashboard/student' : '/'}
               className="text-decoration-none text-dark d-flex align-items-center"
@@ -32,17 +32,19 @@ function StickyNav() {
               </div>
               TeachCall
             </Link>
+            <Link to="/student-premiun" className="ms-3">
+              <button
+                type="button"
+                className="btn btn-outline-warning px-0 py-0 "
+                style={{ fontSize: 13, width: 100, height: 30 }}
+              >
+                Obten Premiun
+              </button>
+            </Link>
           </Navbar.Brand>
-          <Link to="/student-premiun">
-            <button
-              type="button"
-              className="btn btn-outline-warning px-0 py-0 "
-              style={{ fontSize: 13, width: 100, height: 30 }}
-            >
-              Obten Premiun
-            </button>
-          </Link>
-          <SearchBar />
+          <div className="w-50 ">
+            <SearchBar />
+          </div>
         </Container>
       </Navbar>
     </>

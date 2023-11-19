@@ -6,7 +6,8 @@ import { TopCourseRes } from '../../../api/types/Course';
 function TopCourseCard(prop: TopCourseRes) {
   return (
     <Link
-      to="/#"
+      to="/course"
+      state={{ id: prop.id }}
       className="rounded-1 mx-3 my-2 px-2 pt-2 d-flex flex-column bg-info w-25 text-decoration-none"
     >
       <div className="d-flex justify-content-space-between">
@@ -46,11 +47,8 @@ export default function TopCourses() {
   const [courses, setCourses] = useState<TopCourseRes[]>([]);
 
   useEffect(() => {
-    console.log('fetching courses');
     async function fetchCourses() {
       const topFiveCourses = await CourseApi.getTopFiveCourses();
-
-      console.log(topFiveCourses.data);
       setCourses(topFiveCourses.data);
     }
 

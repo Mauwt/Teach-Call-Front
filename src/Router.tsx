@@ -14,6 +14,7 @@ import TeacherSearch from './pages/TeacherSearch';
 import TeacherProfilePage from './pages/TeacherProfilePage';
 import TeacherFeed from './pages/TeacherFeed';
 import TeacherAvailability from './pages/TeacherAvailability';
+import CoursePage from './pages/CoursePage/CoursePage';
 
 export default function AppRouter() {
   return (
@@ -30,7 +31,7 @@ export default function AppRouter() {
       <Route path="/search/teacher?">
         <Route index element={<TeacherSearch />} />
         <Route path=":search" element={<TeacherSearch />} />
-        <Route path="?professorId=:professorId" element={<TeacherSearch />} />
+        <Route path="professorId=:professorId" element={<TeacherSearch />} />
       </Route>
       <Route path="/comunidad" element={<TeacherFeed />} />
 
@@ -40,6 +41,7 @@ export default function AppRouter() {
       {/* Rutas de acceso unico a ESTUDIANTES */}
       <Route element={<ProtectedRoute rol="student" redirectTo="/login" />}>
         <Route path="/dashboard/student" element={<Dashboard />} />
+        <Route path="/course" element={<CoursePage />} />
       </Route>
 
       {/* Rutas de acceso unico a PROFESORES */}

@@ -36,8 +36,8 @@ export default function ProfileCard() {
     <div className="container mt-5">
       <div className="card">
         <img
-          src="https://picsum.photos/3000"
-          style={{ objectFit: 'fill' }}
+          src="hhttps://random.imagecdn.app/500/150"
+          style={{ objectFit: 'contain' }}
           height={150}
           className="card-img-top border-bottom rounded-2 bg-success"
           alt="Imagen de fondo"

@@ -4,7 +4,7 @@ import BookingApi from '../../../api/Booking';
 import { getExplicitStringDate } from '../../../utils/DateAndTimeUtils';
 import userlogo from '../../../assets/descarga.png';
 
-type BookingDataProps = {
+export type  BookingDataProps = {
   startTime: string;
   date: string;
   title: string;
@@ -57,8 +57,8 @@ export function ClassCard(bookingData: BookingDataProps) {
           </div>
           <div className="d-flex flex-column align-items-end">
             <p className="d-inline mt-1 me-3 "> {bookingStartTime}</p>
-            <Link
-              to="/#"
+            <Link state = {{bookingData}}
+              to="/meeting"
               className="d-flex align-items-center text-decoration-none text-dark me-2 mt-3"
               style={{ fontSize: '12px' }}
             >
@@ -128,3 +128,5 @@ export default function FutureClasses() {
     </div>
   );
 }
+
+

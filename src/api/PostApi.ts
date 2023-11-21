@@ -38,6 +38,18 @@ const PostApi = {
     );
     return response;
   },
+  removeLike:async(postId:string) : Promise<AxiosResponse> => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    const response = await api.delete(
+      `${API_PREFIX}/like/${postId}`,
+      { headers }
+    );
+    return response;
+  }
+  ,
   createPost: async (title: string, body: string): Promise<AxiosResponse> => {
     const headers = {
       'Content-Type': 'application/json',

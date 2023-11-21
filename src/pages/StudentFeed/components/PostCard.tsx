@@ -16,9 +16,15 @@ export default function PostCard(post: PostCardProps) {
   const [likesQ, setLikesQ] = useState(post.likesQ);
   const onLiked = async () => {
     try {
-      await PostApi.addLike(post.id);
-      setLiked(true);
-      setLikesQ(likesQ + 1);
+      if (liked) {
+        await PostApi.removeLike(post.id); // Assuming removeLike function handles the DELETE request
+        setLiked(false);
+        setLikesQ(likesQ - 1);
+      } else {
+        await PostApi.addLike(post.id); // Assuming addLike function handles the POST request
+        setLiked(true);
+        setLikesQ(likesQ + 1);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +42,7 @@ export default function PostCard(post: PostCardProps) {
             <button
               type="button"
               className="btn d-flex flex-column justify-content-center align-items-center w-100 like-btn"
-              disabled={liked}
+              // disabled={liked}
               onClick={onLiked}
             >
               <span

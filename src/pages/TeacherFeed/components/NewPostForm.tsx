@@ -32,7 +32,7 @@ function NewPostForm(props: NewPostFormProps) {
           type="text"
           className="form-control ms-4 mb-0 me-2"
           id="new-post-title"
-          placeholder="Titluo"
+          placeholder="Título"
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>

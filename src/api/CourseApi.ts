@@ -24,6 +24,18 @@ const CourseApi = {
     });
     return response;
   },
+
+  getAllByTeacherEmail: async (
+  ): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    const email = localStorage.getItem('email');
+    const response = await api.get(`/course/professord/${email}`, {
+      headers,
+    });
+    return response;
+  },
   getCourseFullInfo: async (id: number): Promise<AxiosResponse> => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem('token')}`,

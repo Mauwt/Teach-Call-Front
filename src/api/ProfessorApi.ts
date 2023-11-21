@@ -51,6 +51,22 @@ const ProfessorApi = {
 
     return response;
   },
+  changePassword: async (
+    email : string,
+    password: string
+  ): Promise<AxiosResponse> => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    const response = await api.post(
+      `${API_PREFIX}/forgotten-password/${email}`,
+      password,
+      { headers }
+    );
+
+    return response;
+  },
   setCompletedTour: async (email: string): Promise<AxiosResponse> => {
     const headers = {
       'Content-Type': 'application/json',
@@ -112,6 +128,7 @@ const ProfessorApi = {
     });
     return response;
   },
+  
   getAllEduacationWithPaginationByEmail: async (
     email: string,
     page: number = 1

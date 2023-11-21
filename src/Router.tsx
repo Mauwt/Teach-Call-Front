@@ -16,6 +16,7 @@ import TeacherFeed from './pages/TeacherFeed';
 import TeacherAvailability from './pages/TeacherAvailability';
 import CoursePage from './pages/CoursePage/CoursePage';
 import ActiveMeeting from './pages/ActiveMeeting';
+import ChangePassword from './pages/ChangePassword';
 
 export default function AppRouter() {
   return (
@@ -49,6 +50,9 @@ export default function AppRouter() {
       <Route element={<ProtectedRoute rol="teacher" redirectTo="/login" />}>
         <Route path="/professor-tour" element={<ProfessorTour />} />
       </Route>
+      <Route path="/change-password" element={<ChangePassword/>} ></Route>
+
     </Routes>
+
   );
 }

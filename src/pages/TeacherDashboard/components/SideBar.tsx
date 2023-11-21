@@ -92,6 +92,11 @@ export default function StudentSideBar() {
             </a>
           </li>
           <li>
+            <Link to="/change-password">
+              Change Password
+            </Link>
+          </li>
+          <li>
             <Link to="/profile/teacher" className="dropdown-item">
               Profile
             </Link>

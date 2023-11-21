@@ -88,8 +88,8 @@ export default function StudentSideBar(props: SideBarProps) {
           aria-labelledby="dropdownUser1"
         >
           <li>
-            <a className="dropdown-item" href="/#">
-              Settings
+            <a className="dropdown-item" href="/change-password">
+              Change Password
             </a>
           </li>
           <li>

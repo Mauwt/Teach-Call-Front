@@ -27,14 +27,16 @@ export default function TeacherDashboard() {
         >
           <h5 className="mt-5 mb-3 ms-1">Horario Semanal</h5>
           <WeekSchedule />
-          <div className="d-flex flex-column flex-grow-1">
+          <div className="d-flex flex-column flex-grow-1"
+          style={{height:'420px'}} >
            <h5 className="mt-5 mb-3 ms-1"> Mis cursos</h5>
            <CourseList/>
-           <a href="" className="btn btn-primary w-50"> Crear curso </a>
+           {/* <a href="" className="btn btn-primary w-50"> Crear curso </a> */}
           </div>
         </div>
         <div
           className="d-flex col-12 col-md-3  f-fill-xxl flex-column px-0 pt-3 "
+
           style={{ backgroundColor: '#F8F9FA' }}
         >
           <h5 className="mt-5 mb-3 ms-1">Clases Agendadas</h5>

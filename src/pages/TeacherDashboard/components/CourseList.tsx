@@ -17,7 +17,7 @@ export default function CourseList() {
     const fetchCourses = async () => {
       try {
         const response = await CourseApi.getAllByTeacherEmail();
-        setCourses(response.data);
+        setCourses((response.data).slice(0,3))
         console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -25,7 +25,8 @@ export default function CourseList() {
     };
 
     fetchCourses();
-    console.log(courses)
+    
+    
   }, []);
 
   return (
@@ -35,8 +36,8 @@ export default function CourseList() {
     >
       {courses &&
         courses.map((course) => (
-          <div>
-            <h5>{course.title}</h5>
+          <div className='card p-2 m-1'>
+            <p>{course.title}</p>
             <p>{course.description}</p>
           </div>
         ))}

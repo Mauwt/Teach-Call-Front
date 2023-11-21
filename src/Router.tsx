@@ -37,7 +37,7 @@ export default function AppRouter() {
 
       <Route path="/profile/teacher" element={<TeacherProfilePage />} />
       <Route path="/availability/teacher" element={<TeacherAvailability />} />
-
+      <Route path="/meeting" element = {<ActiveMeeting/>}></Route>
       {/* Rutas de acceso unico a ESTUDIANTES */}
       <Route element={<ProtectedRoute rol="student" redirectTo="/login" />}>
         <Route path="/dashboard/student" element={<Dashboard />} />

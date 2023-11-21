@@ -59,7 +59,8 @@ export function ClassCard(bookingData: BookingDataProps) {
           <div className="d-flex flex-column align-items-end">
             <p className="d-inline mt-1 me-3 "> {bookingStartTime}</p>
             <Link
-              to="/#"
+              state={{ bookingData }}
+              to="/meeting"
               className="d-flex align-items-center text-decoration-none text-dark me-2 mt-3"
               style={{ fontSize: '12px' }}
             >

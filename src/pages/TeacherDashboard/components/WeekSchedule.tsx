@@ -19,8 +19,7 @@ function daySlots(
   day: Date,
   setDayInfo: (dayInfo: WeekAndDayAvailabilityResponse) => void,
   setAvailabilityStatus: (status: number) => void,
-  setShowSlotInfo: (showSlotInfo: boolean) => void,
-  showSlotInfo: boolean
+  setShowSlotInfo: (showSlotInfo: boolean) => void
 ) {
   const weekNumber = getWeekNumber();
   const dayNumber = day.getDay() - 1;
@@ -244,8 +243,7 @@ export default function WeekSchedule() {
               day,
               setDayInfo,
               setAvailabilityStatus,
-              setShowSlotInfo,
-              showSlotInfo
+              setShowSlotInfo
             )
           )}
         </div>

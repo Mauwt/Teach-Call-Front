@@ -15,8 +15,8 @@ function NewPostForm(props: NewPostFormProps) {
     try {
       await PostApi.createPost(title, body);
       props.setRecharge(!props.recharge);
-      document.getElementById('new-post-title')!.value = '';
-      document.getElementById('new-post-body')!.value = '';
+      document.getElementById('new-post-title')!.innerText = '';
+      document.getElementById('new-post-body')!.innerText= '';
     } catch (error) {
       console.log(error);
     }

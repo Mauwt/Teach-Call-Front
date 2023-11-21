@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Form, ProgressBar } from 'react-bootstrap';
 import CategoryApi, { Category } from '../../api/CategoryApi';
-import { ProfessorEducation } from '../../api/ProfessorApi';
 import SelectCategories from './components/SelectCategories';
 import AddDescription from './components/AddDescription';
 import AddEducation from './components/AddEducation';
@@ -10,9 +9,6 @@ export default function ProfessorTour() {
   const [step, setStep] = useState<number>(1);
   const [categories, setCategories] = useState<Array<Category>>([]);
   const [description, setDescription] = useState<string>('');
-  const [education, setEducation] = useState<ProfessorEducation>(
-    {} as ProfessorEducation
-  );
 
   useEffect(() => {
     async function getCategories() {
@@ -60,10 +56,8 @@ export default function ProfessorTour() {
 
         {step === 3 && (
           <AddEducation
-            setEducation={setEducation}
             categories={categories}
             description={description}
-            education={education}
           />
         )}
         <ProgressBar animated className="shadow" now={(step / 3) * 100} />

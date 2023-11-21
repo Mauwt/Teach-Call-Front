@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import ReviewApi from '../../../api/ReviewApi';
 
 function Reviews() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(false);
+  const [currentPage] = useState(0);
   const [reviews, setReviews] = useState<any[]>([]);
   useEffect(() => {
     const fetchReviews = async () => {

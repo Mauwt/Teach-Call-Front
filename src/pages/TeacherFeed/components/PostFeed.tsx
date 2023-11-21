@@ -39,14 +39,7 @@ export default function PostFeed(props: PostFeedProps) {
     props.setRecharge(!props.recharge);
     console.log(postId);
   };
-
-  const onEdit = async (e) => {
-    e.preventDefault();
-    const postId = e.target.id;
-    // props.setRecharge(true);
-    console.log(postId);
-  };
-
+  
   return (
     <>
       {posts.length === 0 && (

@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import React, { ComponentType } from 'react';
 import './style.css';
 import ProfessorApi from '../../api/ProfessorApi';
-import NavB from '../TeacherDashboard';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -11,8 +9,7 @@ import logoutHandleSubmit from '../../utils/logOutOnClick';
 import AuthApi from '../../api/AuthApi';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
+
 
 
 function SecondNavB() {

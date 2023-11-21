@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserAuthContext } from '../../../context/UserAuthContext';
 import logoutHandleSubmit from '../../../utils/logOutOnClick';

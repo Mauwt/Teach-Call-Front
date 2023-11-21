@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { ClassCard } from '../../Dashboard/components/FutureClasses';
-import BookingApi from '../../../api/Booking';
 import CourseApi from '../../../api/CourseApi';
 
 

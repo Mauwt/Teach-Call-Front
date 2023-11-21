@@ -1,4 +1,4 @@
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BookingApi from '../../../api/Booking';
 import { getExplicitStringDate } from '../../../utils/DateAndTimeUtils';

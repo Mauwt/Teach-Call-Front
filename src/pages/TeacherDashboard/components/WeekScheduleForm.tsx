@@ -10,7 +10,8 @@ import {
 import AvailabilityApi from '../../../api/ProfessorAvailability';
 import { TimeRange } from '../../../api/types/ProfessorAvailability';
 
-type DayToCheckProps = {
+type DayToCheckProps = { 
+  time?: any;
   weekOffset: number;
   key: number;
   dayNumber: number;
@@ -19,10 +20,10 @@ type DayToCheckProps = {
 };
 
 type WeekScheduleFormProps = {
-  weekOffset: number;
-  setAvailabilityStatus: (status: number) => void;
-  setShowForm: (showForm: boolean) => void;
-  setNewWeekDays: (
+  weekOffset?: number;
+  setAvailabilityStatus?: (status: number) => void;
+  setShowForm?: (showForm: boolean) => void;
+  setNewWeekDays?: (
     weekOffset: number,
     email: string,
     setAvailabilityStatus: (status: number) => void
@@ -34,10 +35,12 @@ type DayAndRange = {
   start: string;
   end: string;
 };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function DayToCheck(prop: DayToCheckProps) { 
+  const onChange = (time: any, timeString: [string, string]) => { 
 
-function DayToCheck(prop: DayToCheckProps) {
-  const onChange = (time: any, timeString: [string, string]) => {
     const dayAndRange = {
+      time,
       day: prop.dayNumber,
       start: timeString[0],
       end: timeString[1],
@@ -66,6 +69,7 @@ function DayToCheck(prop: DayToCheckProps) {
 
   /* eslint-disable-next-line */
   const disableTime = (now: any) => {
+    console.log(now);
     return {
       disabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 21, 22, 23, 24],
     };

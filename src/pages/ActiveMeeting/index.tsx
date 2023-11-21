@@ -13,7 +13,6 @@ export default function ActiveMeeting() {
     const apicall = async () => {
       const bookingId = params.get('bokingId');
       const startTime = params.get('startTime');
-      const date = params.get('date');
 
       const currentDate = new Date();
       const bookingDate = new Date(params.get('date'));

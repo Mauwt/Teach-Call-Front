@@ -15,7 +15,7 @@ import TeacherProfilePage from './pages/TeacherProfilePage';
 import TeacherFeed from './pages/TeacherFeed';
 import TeacherAvailability from './pages/TeacherAvailability';
 import CoursePage from './pages/CoursePage/CoursePage';
-
+import ActiveMeeting from './pages/ActiveMeeting';
 export default function AppRouter() {
   return (
     <Routes>

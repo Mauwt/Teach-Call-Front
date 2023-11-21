@@ -4,7 +4,7 @@ import BookingApi from '../../../api/Booking';
 import { getExplicitStringDate } from '../../../utils/DateAndTimeUtils';
 import userlogo from '../../../assets/descarga.png';
 
-type BookingDataProps = {
+export type BookingDataProps = {
   id: number;
   startTime: string;
   date: string;
@@ -18,7 +18,8 @@ type BookingDataProps = {
 export function ClassCard(bookingData: BookingDataProps) {
   const bookingDate = getExplicitStringDate(bookingData.date);
   const bookingStartTime = bookingData.startTime.slice(0, 5);
-
+  console.log("Booking id!!!! ")
+  console.log(bookingData.id);
   return (
     <div
       className="booking-card d-flex  border rounded mb-3"
@@ -59,7 +60,7 @@ export function ClassCard(bookingData: BookingDataProps) {
           <div className="d-flex flex-column align-items-end">
             <p className="d-inline mt-1 me-3 "> {bookingStartTime}</p>
             <Link
-              state={{ bookingData }}
+              state = bookingData={bookingData}
               to="/meeting"
               className="d-flex align-items-center text-decoration-none text-dark me-2 mt-3"
               style={{ fontSize: '12px' }}

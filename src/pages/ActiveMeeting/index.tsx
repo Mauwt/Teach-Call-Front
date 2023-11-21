@@ -1,7 +1,9 @@
 import { BookingDataProps } from "../Dashboard/components/FutureClasses";
 import { useState, useEffect  } from "react";
+import api from "../../api/configs/axiosConfig";
 
-export function ActiveMeeting(bookingData: BookingDataProps){
+export default function ActiveMeeting(bookingData: BookingDataProps){
+    console.log(bookingData);
 
     const [isActive, setIsActive] = useState(false);
 
@@ -10,8 +12,10 @@ export function ActiveMeeting(bookingData: BookingDataProps){
     // extract current date
     const currentDate = new Date();
 
+    
     //arrow function use effect 
     useEffect(() => {
+        const apicall = async () => {
 
             // extract current date
             const currentDate = new Date();
@@ -30,19 +34,19 @@ export function ActiveMeeting(bookingData: BookingDataProps){
                 // get role
                 const role = localStorage.getItem("role");
                 if (role == "teacher"){
-                    // "meetingDetails/teacher/{bookingData.id}"
-
-
-                    //llamar api para meeting details  para teacher
-
-                    setLink(bookingData.link);
+                    const response = await api.get(`meetingDetails/teacher/${bookingData.id}`)
+                    const link = response.data;
+                    setLink(link);
                 }
-                else {
-                    //llamar api para meeting details  para student
-                    setLink(bookingData.link);
-                
+                else if (role == "student"){    
+                    const response = await api.get(`meetingDetails/student/${bookingData.id}`)
+                    const link = response.data;
+                    setLink(link);
                 }
             }
+
+        }
+        apicall();
         },[]);
 
     
@@ -52,10 +56,8 @@ export function ActiveMeeting(bookingData: BookingDataProps){
     return(
         <div>
             {isActive ? 
-            <iframe src={{algooo}} allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style={{height: "700px", width: "100%"}}></iframe> 
+            <iframe src={link} allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure" style={{height: "700px", width: "100%"}}></iframe> 
             : <h1>Vuelve mas tarde</h1>}
-
-            
         </div>
     );
 

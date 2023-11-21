@@ -5,6 +5,7 @@ import { getExplicitStringDate } from '../../../utils/DateAndTimeUtils';
 import userlogo from '../../../assets/descarga.png';
 
 type BookingDataProps = {
+  id: number;
   startTime: string;
   date: string;
   title: string;
@@ -104,6 +105,7 @@ export default function FutureClasses() {
       {userBookings.map((booking: BookingDataProps) => (
         <ClassCard
           key={booking.title + booking.date + booking.startTime}
+          id={booking.id}
           startTime={booking.startTime}
           date={booking.date}
           title={booking.title}

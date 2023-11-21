@@ -46,6 +46,7 @@ function daySlots(
       );
       setDayInfo(response.data);
       setAvailabilityStatus(0);
+      console.log(response.data);
 
       const dayContainer = document.getElementById('day-container');
 
@@ -98,13 +99,12 @@ async function setWeekDays(
     const { availableDays } = response.data;
 
     const currentDayNumber = new Date().getDay() - 1;
-    console.log(currentDayNumber);
     const currentWeekNumber = getWeekNumber();
 
     slots.forEach((slot, i) => {
       setAvailabilityStatus(1);
       const day = days[i];
-      const dayNumber = day.getDay() - 1;
+      const dayNumber = day.getDay();
 
       slot.classList.add('disabled');
       slot.classList.remove('available');

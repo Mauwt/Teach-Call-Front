@@ -28,6 +28,34 @@ export default function PostFeed() {
 
   return (
     <>
+      {posts.length === 0 && (
+        <div className="d-flex flex-column align-items-center mb-3 border rounded mt-3 w-100 mx-3">
+          <div className="col-10 d-flex flex-colum">
+            <div className="d-flex-flex-shrink justify-content-center align-items-center w-100">
+              <div className="h5 mb-0 text-center mt-2">
+                Bienvenido a tu feed
+              </div>
+              <div className="flex flex-columalign-items-center text-center pt-0">
+                <p className="mt-0 pt-0">Aqui podras ver y editar tus post</p>
+                <link
+                  rel="stylesheet"
+                  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+                />
+
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 30, color: 'black' }}
+                >
+                  post_add
+                </span>
+                <div className="d-flex justify-content-center align-items-center">
+                  <p>Haz una publicación para que más alumnos te conozcan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="d-flex flex-column align-items-center mb-3 border rounded mt-3 w-100 mx-3">
         {posts.map((post) => {
           return (
@@ -74,14 +102,16 @@ export default function PostFeed() {
         })}
       </div>
       <div className="d-flex justify-content-center align-items-center w-100">
-        <button
-          type="button"
-          className="btn btn-primary mb-2 ms-auto me-2"
-          onClick={onClick}
-          disabled={isLastPage}
-        >
-          Ver mas
-        </button>
+        {!(posts.length === 0) && (
+          <button
+            type="button"
+            className="btn btn-primary mb-2 ms-auto me-2"
+            onClick={onClick}
+            disabled={isLastPage}
+          >
+            Ver mas
+          </button>
+        )}
       </div>
     </>
   );

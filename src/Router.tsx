@@ -16,6 +16,7 @@ import TeacherFeed from './pages/TeacherFeed';
 import TeacherAvailability from './pages/TeacherAvailability';
 import CoursePage from './pages/CoursePage/CoursePage';
 import ActiveMeeting from './pages/ActiveMeeting';
+
 export default function AppRouter() {
   return (
     <Routes>
@@ -37,7 +38,7 @@ export default function AppRouter() {
 
       <Route path="/profile/teacher" element={<TeacherProfilePage />} />
       <Route path="/availability/teacher" element={<TeacherAvailability />} />
-      <Route path="/meeting" element = {<ActiveMeeting/>}></Route>
+      <Route path="/meeting?" element={<ActiveMeeting />} />
       {/* Rutas de acceso unico a ESTUDIANTES */}
       <Route element={<ProtectedRoute rol="student" redirectTo="/login" />}>
         <Route path="/dashboard/student" element={<Dashboard />} />

@@ -44,8 +44,8 @@ const ProfessorApi = {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
     const response = await api.patch(
-      `${API_PREFIX}/description/add/${email}`,
-      { description },
+      `${API_PREFIX}/description/${email}`,
+      description,
       { headers }
     );
 

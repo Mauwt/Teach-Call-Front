@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BookingApi from '../../../api/Booking';
 import { getExplicitStringDate } from '../../../utils/DateAndTimeUtils';
@@ -18,8 +18,15 @@ export type BookingDataProps = {
 export function ClassCard(bookingData: BookingDataProps) {
   const bookingDate = getExplicitStringDate(bookingData.date);
   const bookingStartTime = bookingData.startTime.slice(0, 5);
-  console.log("Booking id!!!! ")
-  console.log(bookingData.id);
+
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(
+      `/meeting?bokingId=${bookingData.id}&startTime=${bookingData.startTime}&date=${bookingData.date}`
+    );
+  };
+
   return (
     <div
       className="booking-card d-flex  border rounded mb-3"
@@ -59,9 +66,10 @@ export function ClassCard(bookingData: BookingDataProps) {
           </div>
           <div className="d-flex flex-column align-items-end">
             <p className="d-inline mt-1 me-3 "> {bookingStartTime}</p>
-            <Link
-              state = bookingData={bookingData}
-              to="/meeting"
+            {/* eslint-disable-next-line */}
+            <a
+              role="button"
+              onClick={onClick}
               className="d-flex align-items-center text-decoration-none text-dark me-2 mt-3"
               style={{ fontSize: '12px' }}
             >
@@ -72,7 +80,7 @@ export function ClassCard(bookingData: BookingDataProps) {
               >
                 arrow_right_alt
               </span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

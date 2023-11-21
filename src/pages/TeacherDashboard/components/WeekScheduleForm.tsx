@@ -126,6 +126,8 @@ async function sendWeekSchedule(
     spinner?.classList.remove('d-none');
     spinner?.classList.add('d-flex');
 
+    console.log({ weekNumber, email, rangeRecords });
+
     await AvailabilityApi.setWeekAvailability(email, weekNumber, rangeRecords);
 
     setShowForm(false);

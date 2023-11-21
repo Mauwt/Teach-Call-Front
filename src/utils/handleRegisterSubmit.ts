@@ -61,7 +61,7 @@ const registerHandleSubmit = (
       return navigate(`/dashboard/${user_role}`);
     })
     .catch(() => {
-      return navigate(`/student-register`);
+      return navigate(`/`);
     });
 };
 

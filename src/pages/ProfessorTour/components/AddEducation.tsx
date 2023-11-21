@@ -82,6 +82,8 @@ export default function AddEducation(props: AddEducationProps) {
           .map((category) => category.id),
       });
 
+      console.log(props.description);
+
       await ProfessorApi.addDescription(userEmail, props.description);
 
       const startDay = startDate.getDate();

@@ -24,6 +24,12 @@ export default function TeacherDashboard() {
           style={{ backgroundColor: '#F8F9FA' }}
         >
           <WeekSchedule />
+          <iframe
+            title="TeachCall"
+            src=""
+            allow="camera; microphone; fullscreen; speaker; display-capture; compute-pressure"
+            style={{ height: '700px', width: '100%' }}
+          />
         </div>
         <div
           className="d-flex col-12 col-md-3  f-fill-xxl flex-column px-0 pt-3 "

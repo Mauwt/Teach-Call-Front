@@ -23,7 +23,7 @@ export default function DayContainer(prop: DayContainerProps) {
   };
 
   return (
-    <div>
+    <div className="overflow-auto scroll-custom" style={{ maxHeight: '50vh' }}>
       {prop.status === 0 && (
         <>
           <h5 className="ms-3 mt-2">Disponibilidad </h5>
@@ -32,6 +32,8 @@ export default function DayContainer(prop: DayContainerProps) {
             setSelectedAvailability={prop.setSelectedAvailability}
             setShowForm={prop.setShowForm}
             showForm={prop.showForm}
+            setShowSlotInfo={prop.setShowSlotInfo}
+            showSlotInfo={prop.showSlotInfo}
           />
         </>
       )}

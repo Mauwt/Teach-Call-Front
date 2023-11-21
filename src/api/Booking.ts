@@ -37,6 +37,13 @@ const BookingApi = {
     };
     return api.get(`/bookings/professor?page=${page}`, { headers });
   },
+  getById: async (id: number): Promise<AxiosResponse<any>> => {
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    return api.get(`/bookings/short/${id}`, { headers });
+  },
 };
 
 export default BookingApi;

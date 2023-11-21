@@ -18,7 +18,9 @@ import BookingInfo from './BookingInfo';
 function daySlots(
   day: Date,
   setDayInfo: (dayInfo: WeekAndDayAvailabilityResponse) => void,
-  setAvailabilityStatus: (status: number) => void
+  setAvailabilityStatus: (status: number) => void,
+  setShowSlotInfo: (showSlotInfo: boolean) => void,
+  showSlotInfo: boolean
 ) {
   const weekNumber = getWeekNumber();
   const dayNumber = day.getDay() - 1;
@@ -46,6 +48,8 @@ function daySlots(
       );
       setDayInfo(response.data);
       setAvailabilityStatus(0);
+      setShowSlotInfo(false);
+
       console.log(response.data);
 
       const dayContainer = document.getElementById('day-container');
@@ -235,7 +239,15 @@ export default function WeekSchedule() {
           className="week-container row d-flex flex-column flex-md-row justify-content-around mx-auto w-100 mt-0 overflow-x-auto"
           style={{ height: '50px' }}
         >
-          {days.map((day) => daySlots(day, setDayInfo, setAvailabilityStatus))}
+          {days.map((day) =>
+            daySlots(
+              day,
+              setDayInfo,
+              setAvailabilityStatus,
+              setShowSlotInfo,
+              showSlotInfo
+            )
+          )}
         </div>
         <div className="d-flex w-100 mt-2 mx-auto ">
           <div
@@ -252,7 +264,7 @@ export default function WeekSchedule() {
               showSlotInfo={showSlotInfo}
             />
           </div>
-          <div className="d-flex flex-grow-1 justifycontent mx-0 mt-2">
+          <div className="d-flex flex-grow-1 justify-content-center mx-0 mt-2">
             {showForm && (
               <WeekScheduleForm
                 weekOffset={weekOffset}

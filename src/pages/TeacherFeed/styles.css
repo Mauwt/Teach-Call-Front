@@ -7,3 +7,17 @@
     cursor: pointer;
     color: #e33d3d !important;
 }
+
+.scroll-custom::-webkit-scrollbar {
+    width: 5px; 
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.scroll-custom::-webkit-scrollbar-track-piece {
+    background-color: white;
+    border-radius: 10px;
+}

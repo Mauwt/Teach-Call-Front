@@ -92,7 +92,7 @@ export default function TeacherCard(prop: TeacherCardProps) {
         aria-hidden="true"
       />
       {showWeek && (
-        <div className="container d-flex flex-column mt-2 rounded border pt-0 ">
+        <div className="container d-flex flex-column mt-2 rounded border pt-0 week-container">
           <Week teacherId={prop.id} />
         </div>
       )}

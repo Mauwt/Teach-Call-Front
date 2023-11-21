@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react';
 import {
   DayTimeSlot,
   WeekAndDayAvailabilityResponse,
@@ -9,6 +8,8 @@ type SlotsProps = {
   showForm: boolean;
   setShowForm: (showForm: boolean) => void;
   setSelectedAvailability: (selectedAvailability: DayTimeSlot) => void;
+  setShowSlotInfo: (showSlotInfo: boolean) => void;
+  showSlotInfo: boolean;
 };
 
 export default function Slots(prop: SlotsProps) {
@@ -16,15 +17,16 @@ export default function Slots(prop: SlotsProps) {
     .at(0)
     ?.at(1);
 
-  const onClickShowInfo = (e: MouseEvent<HTMLElement>) => {
-    const slotId = e.currentTarget.id;
+  const onClickShowInfo = async (e) => {
+    const slotId = e.target.id;
+
     const selectedAvailability = dayInfo.find(
-      (slot) => slot.slotId.toString() === slotId
+      (slot) => slot.slotId === parseInt(slotId, 10)
     );
 
     if (!selectedAvailability) return;
     prop.setSelectedAvailability(selectedAvailability);
-    prop.setShowForm(!prop.showForm);
+    prop.setShowSlotInfo(prop.showSlotInfo ? true : !prop.showSlotInfo);
   };
 
   const slotsToRender = dayInfo.map((slot) => (
@@ -55,13 +57,13 @@ export default function Slots(prop: SlotsProps) {
         </div>
         <div className="d-none d-md-flex justify-content-center ms-md-5">
           <button
+            id={`${slot.slotId}`}
             type="button"
-            className="btn btn-dark border py-0"
+            className="btn btn-dark border ms-5 py-0"
             onClick={onClickShowInfo}
+            style={{ fontSize: '14px' }}
           >
-            <span className="align-items-center" style={{ fontSize: '14px' }}>
-              {prop.showForm ? 'cerrar' : 'ver info'}
-            </span>
+            info
           </button>
         </div>
         <div className="d-md-none ms-3 d-flex  ">

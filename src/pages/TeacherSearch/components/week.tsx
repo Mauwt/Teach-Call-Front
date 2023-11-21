@@ -91,10 +91,26 @@ async function setWeekDays(weekOffset: number, teacherId: number) {
   document
     .getElementsByClassName('day-selected')[0]
     ?.classList.remove('day-selected');
+
   document.getElementsByClassName('today')[0]?.classList.remove('today');
+
+  // comprobar que solo exista un componente week en el dom, un componente week se reconoce por la clase week-component, además si tiene un atributo data-professor-id, este debe ser igual al id del profesor que se está buscando
+  const weekComponents = document.getElementsByClassName('week-component');
+  const weekComponent = Array.from(weekComponents).find(
+    (component) =>
+      component.getAttribute('data-professor-id') !== `${teacherId}`
+  );
+  if (weekComponent) weekComponent.remove();
+
   const days = getWeekDays(weekOffset);
   const weekNumber = getWeekNumber(weekOffset);
-  const slots = document.querySelectorAll('.day-slot');
+
+  const week = document.getElementById(`week-${teacherId}`);
+  if (week) week.classList.add('week-component');
+
+  // seleccionar todos los slots hijos del componente week
+  const slots = Array.from(week.querySelectorAll('.day-slot'));
+
   try {
     const response = await AvailabilityApi.getWeekAvailibilityById(
       teacherId,
@@ -103,7 +119,7 @@ async function setWeekDays(weekOffset: number, teacherId: number) {
 
     const { availableDays } = response.data;
 
-    const currentDayNumber = new Date().getDay() - 1;
+    const currentDayNumber = new Date().getDay();
     const currentWeekNumber = getWeekNumber();
 
     slots.forEach((slot, i) => {
@@ -170,6 +186,7 @@ export default function Week(prop: WeekProps) {
   };
 
   const handleSubmitBooking = async () => {
+    console.log(selectedCourseId, prop.teacherId, selectedSlotId);
     try {
       const response = await BookingApi.addBooking(
         selectedCourseId,
@@ -200,9 +217,10 @@ export default function Week(prop: WeekProps) {
   return (
     <>
       <div
-        className="container-fluid m-0 p-0 show-week mb-3"
+        className="container-fluid m-0 p-0 mb-3 week-component"
         id={`week-${prop.teacherId}`}
         key={`week-${prop.teacherId}`}
+        data-professor-id={prop.teacherId}
       >
         <h4 className="text-center text-dark mt-4 mb-0" id="able-h2">
           {' '}
@@ -301,8 +319,8 @@ export default function Week(prop: WeekProps) {
         {showSlots && (
           <div
             id="day-container"
-            className="d-flex flex-column rounded-start-bottom rounded-end-bottom w-50 mx-auto my-4"
-            style={{ height: 'fit-content' }}
+            className="d-flex flex-column rounded-start-bottom rounded-end-bottom w-50 mx-auto my-4 overflow-auto scroll-custom"
+            style={{ maxHeight: '300px' }}
           >
             <link
               rel="stylesheet"

@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import PostApi from '../../../api/PostApi';
 
-function NewPostForm() {
+type NewPostFormProps = {
+  setRecharge: (recharge: boolean) => void;
+  recharge: boolean;
+};
+
+function NewPostForm(props: NewPostFormProps) {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
-  const onClick = () => {
-    console.log(title, body);
+  const onClick = async () => {
+    try {
+      await PostApi.createPost(title, body);
+      props.setRecharge(!props.recharge);
+      document.getElementById('new-post-title')!.value = '';
+      document.getElementById('new-post-body')!.value = '';
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

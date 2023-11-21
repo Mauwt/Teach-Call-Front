@@ -80,6 +80,15 @@ const AvailabilityApi = {
     );
     return response;
   },
+  getBookingByTimeSlotID: async (timeSlotId: number) => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    const response = await api.get(`availability/booking/${timeSlotId}`, {
+      headers,
+    });
+    return response;
+  },
 };
 
 export default AvailabilityApi;

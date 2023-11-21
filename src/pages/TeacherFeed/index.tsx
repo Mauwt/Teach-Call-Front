@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import NavB from '../TeacherDashboard/components/Nav';
 import SideBar from '../TeacherDashboard/components/SideBar';
 import NewPostForm from './components/NewPostForm';
@@ -6,6 +7,7 @@ import PostFeed from './components/PostFeed';
 import './styles.css';
 
 export default function TeacherFeed() {
+  const [recharge, setRecharge] = useState(false);
   return (
     <div
       className="container-fluid g-0 d-flex flex-column"
@@ -26,14 +28,14 @@ export default function TeacherFeed() {
         >
           <div className="d-flex flex-column flex-shrink justify-content-center align-items-center mx-auto w-75 mt-3">
             <div className="h5 mb-0">Nuevo Post</div>
-            <NewPostForm />
+            <NewPostForm recharge={recharge} setRecharge={setRecharge} />
           </div>
           <div className="d-flex flex-column flex-fill mt-5 border-top w-75 mx-auto">
             <div className="w-100 mx-auto mt-3">
               <h5 className="fw-bold">Mis Post</h5>
             </div>
             <div className="d-flex flex-column flex-shrink  align-items-center mx-auto w-100 px-2">
-              <PostFeed />
+              <PostFeed recharge={recharge} setRecharge={setRecharge} />
             </div>
           </div>
         </div>

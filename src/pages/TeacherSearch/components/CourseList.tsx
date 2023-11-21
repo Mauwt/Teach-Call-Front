@@ -20,6 +20,7 @@ export default function CourseList(prop: CourseListProps) {
           currentPage
         );
         setContent(response.data.content);
+        console.log(response.data.content);
         setIsLastPage(response.data.last);
         setIsContentAvailable(true);
       } catch (error) {
@@ -39,6 +40,7 @@ export default function CourseList(prop: CourseListProps) {
       }
     });
     event.currentTarget.checked = true;
+    console.log(event.currentTarget.id.split('-')[1]);
     prop.setSelectedCourseId(event.currentTarget.id.split('-')[1]);
   };
 
@@ -46,11 +48,11 @@ export default function CourseList(prop: CourseListProps) {
     <div className="d-flex flex-column ">
       {isContentAvailable &&
         content.map((course) => (
-          <label htmlFor={`course-${course.id}`} key={course.id}>
+          <label htmlFor={`course-${course.courseId}`} key={course.courseId}>
             <input
               type="checkbox"
-              id={`course-${course.id}`}
-              name={`course-${course.id}-checkbox"`}
+              id={`course-${course.courseId}`}
+              name={`course-${course.courseId}-checkbox"`}
               value={course.title}
               className="form-check-input rounded-5 me-3"
               onClick={handleCheckboxChange}

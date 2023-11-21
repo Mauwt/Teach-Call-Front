@@ -39,6 +39,7 @@ export default function FutureBookings() {
         const response = await BookingApi.getFutureBookings(page);
         setFutureBookings(response.data.content);
         setIsLastPage(response.data.last);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }

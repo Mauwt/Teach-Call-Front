@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-  baseURL: "https://teahcallback-spring-app-20231122020617.azuremicroservices.io/",
+  baseURL: "https://deployteachcall-production.up.railway.app",
 });
 
 export default api;

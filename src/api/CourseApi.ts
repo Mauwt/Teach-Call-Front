@@ -25,8 +25,7 @@ const CourseApi = {
     return response;
   },
 
-  getAllByTeacherEmail: async (
-  ): Promise<AxiosResponse<any>> => {
+  getAllByTeacherEmail: async (): Promise<AxiosResponse<any>> => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
@@ -47,6 +46,14 @@ const CourseApi = {
     } else {
       console.log('error');
     }
+    return response;
+  },
+  createCourse: async (data: any): Promise<AxiosResponse> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.post(`/course/new`, data, { headers });
     return response;
   },
 };

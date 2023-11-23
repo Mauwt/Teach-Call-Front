@@ -50,9 +50,7 @@ export default function AppRouter() {
       <Route element={<ProtectedRoute rol="teacher" redirectTo="/login" />}>
         <Route path="/professor-tour" element={<ProfessorTour />} />
       </Route>
-      <Route path="/change-password" element={<ChangePassword/>} ></Route>
-
+      <Route path="/change-password" element={<ChangePassword />} />
     </Routes>
-
   );
 }

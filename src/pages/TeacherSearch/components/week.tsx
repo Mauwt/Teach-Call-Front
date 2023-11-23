@@ -124,7 +124,7 @@ async function setWeekDays(weekOffset: number, teacherId: number) {
 
     slots.forEach((slot, i) => {
       const day = days[i];
-      const dayNumber = day.getDay() - 1;
+      const dayNumber = day.getDay();
 
       slot.classList.add('disabled');
       slot.classList.remove('available');

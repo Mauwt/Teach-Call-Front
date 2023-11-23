@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import CourseApi from '../../../api/CourseApi';
 
-
 type CourseData = {
   id: number;
   title: string;
@@ -15,7 +14,7 @@ export default function CourseList() {
     const fetchCourses = async () => {
       try {
         const response = await CourseApi.getAllByTeacherEmail();
-        setCourses((response.data).slice(0,3))
+        setCourses(response.data.slice(0, 3));
         console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -23,8 +22,6 @@ export default function CourseList() {
     };
 
     fetchCourses();
-    
-    
   }, []);
 
   return (
@@ -34,11 +31,11 @@ export default function CourseList() {
     >
       {courses &&
         courses.map((course) => (
-          <div className='card p-2 m-1'>
+          <div className="card p-2 m-1" key={course.id}>
             <p>{course.title}</p>
             <p>{course.description}</p>
           </div>
         ))}
     </div>
-    );
-}   
+  );
+}

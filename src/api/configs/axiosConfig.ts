@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-  baseURL: "https://deploysalva-production.up.railway.app/",
+  baseURL: "https://teachcall.azurewebsites.net/",
 });
 
 export default api;

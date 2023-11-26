@@ -180,10 +180,16 @@ export default function Week(prop: WeekProps) {
   const days = getWeekDays(weekOffset);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [reloadWeek, setReloadWeek] = useState(false);
 
   const handlePrevWeek = () => {
     setWeekOffset(weekOffset - 1);
     setShowSlots(false);
+  };
+
+  const handleCloseModal = () => {
+    setShowConfirmationModal(false);
+    setReloadWeek(true);
   };
 
   const handleNextWeek = () => {
@@ -205,23 +211,29 @@ export default function Week(prop: WeekProps) {
       setShowConfirmationModal(true);
     } catch (error) {
       setLoading(false); // Desactivar animación de carga
-      if (error.response?.status === 409) {
-        setModalMessage("Ups, alguien más ya ha reservado.");
-      } else {
+      if (error.response?.status === 500) {
         setModalMessage("Vuelve a intentarlo más tarde.");
+      } else {
+        setModalMessage("Este horario ya no está disponible.");
       }
       setShowConfirmationModal(true);
     }
   };
-  
 
+  useEffect(() => {
+    if (reloadWeek) {
+      setWeekDays(weekOffset, prop.teacherId);
+      setReloadWeek(false);
+    }
+  }, [reloadWeek, weekOffset, prop.teacherId]);
+  
   useEffect(() => {
     setWeekDays(weekOffset, prop.teacherId);
     setFirstDay(days[0].getDate());
     setFirstDayMonth(days[0].getMonth());
     setLastDay(days[5].getDate());
     setLastDayMonth(days[5].getMonth());
-  }, [weekOffset, prop.teacherId]);
+  },  [weekOffset, prop.teacherId]);
 
   return (
     <>
@@ -424,13 +436,13 @@ export default function Week(prop: WeekProps) {
           </div>
         </div>
       </div>
-      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
+      <Modal show={showConfirmationModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmación de Reserva</Modal.Title>
         </Modal.Header>
         <Modal.Body>{modalMessage}</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowConfirmationModal(false)}>
+          <Button variant="secondary" onClick={handleCloseModal}>
             Cerrar
           </Button>
         </Modal.Footer>

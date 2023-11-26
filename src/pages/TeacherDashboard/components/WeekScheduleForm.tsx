@@ -132,11 +132,7 @@ async function sendWeekSchedule(
 
     console.log({ weekNumber, email, rangeRecords });
 
-    await AvailabilityApi.setWeekAvailability(
-      email,
-      weekNumber - 1,
-      rangeRecords
-    );
+    await AvailabilityApi.setWeekAvailability(email, weekNumber, rangeRecords);
 
     setShowForm(false);
 
@@ -165,7 +161,7 @@ export default function WeekScheduleForm(prop: WeekScheduleFormProps) {
     if (!userEmail) return navigate('/login');
     e.preventDefault();
 
-    console.log(`Enviando : ${weekNumber - 1}`);
+    console.log(`Enviando : ${weekNumber}`);
 
     sendWeekSchedule(
       prop.setAvailabilityStatus,

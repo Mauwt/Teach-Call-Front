@@ -96,7 +96,7 @@ async function setWeekDays(
   try {
     const response = await AvailabilityApi.getWeekAvailibility(
       email,
-      weekNumber - 1
+      weekNumber
     );
     console.log(`se trajo la semana${weekNumber}`);
     const { availableDays } = response.data;

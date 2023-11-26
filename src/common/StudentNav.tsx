@@ -32,15 +32,6 @@ function StickyNav() {
               </div>
               TeachCall
             </Link>
-            <Link to="/student-premiun" className="ms-3">
-              <button
-                type="button"
-                className="btn btn-outline-warning px-0 py-0 "
-                style={{ fontSize: 13, width: 100, height: 30 }}
-              >
-                Obten Premiun
-              </button>
-            </Link>
           </Navbar.Brand>
           <div className="w-50 ">
             <SearchBar />

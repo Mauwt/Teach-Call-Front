@@ -41,9 +41,11 @@ function daySlots(
     try {
       const response = await AvailabilityApi.getfreeTimeSlots(
         teacherId,
-        weekNum - 1,
+        weekNum,
         dayNum
       );
+
+      console.log('slots for day', dayNum, weekNum);
 
       setDayInfo(response.data);
 
@@ -113,7 +115,7 @@ async function setWeekDays(weekOffset: number, teacherId: number) {
   try {
     const response = await AvailabilityApi.getWeekAvailibilityById(
       teacherId,
-      weekNumber - 1
+      weekNumber
     );
 
     const { availableDays } = response.data;

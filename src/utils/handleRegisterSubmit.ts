@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
-import { LoginRes, RegisterReq, RegisterRes } from '../api/types/Auth';
+import { RegisterReq, RegisterRes } from '../api/types/Auth';
 import validateRegisterForm from './validateRegisterForm';
 import AuthApi from '../api/AuthApi';
 import { UserAuth } from '../context/UserAuthContext';

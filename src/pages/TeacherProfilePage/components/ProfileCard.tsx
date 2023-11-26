@@ -4,8 +4,8 @@ import defaultProfile from '../../../assets/default-profile-account-unknown-icon
 
 export default function ProfileCard() {
   const [error, setError] = useState('');
-  const [ppUrl, setPpUrl] = useState(localStorage.getItem('pp'));
-  const [cpUrl, setCpUrl] = useState(localStorage.getItem('cover'));
+  const [ppUrl, setPpUrl] = useState('');
+  const [cpUrl, setCpUrl] = useState('');
   const validFileTypes = ['image/jpg', 'image/jpeg', 'image/png'];
 
   const handleProfilePicUpload = async (e, fileType: string) => {
@@ -48,7 +48,7 @@ export default function ProfileCard() {
     }
   };
 
-  const OnDeletePic = async (e: any, filename: string) => {
+  const OnDeletePic = async (filename: string) => {
     try {
       await ProfessorApi.deleteImg(filename);
 
@@ -282,7 +282,7 @@ export default function ProfileCard() {
                 type="button"
                 className="btn btn-secondary py-1 px-1 d-flex align-items-center justify-content-center"
                 data-dismiss="modal"
-                onClick={(e) => OnDeletePic(e, 'pp')}
+                onClick={() => OnDeletePic('pp')}
               >
                 <span
                   className="material-symbols-outlined text-danger"
@@ -332,7 +332,7 @@ export default function ProfileCard() {
                   type="button"
                   className="btn btn-secondary py-1 mb-0 d-flex align-items-center justify-content-center"
                   data-dismiss="modal"
-                  onClick={(e) => OnDeletePic(e, 'cover')}
+                  onClick={() => OnDeletePic('cover')}
                 >
                   <span
                     className="material-symbols-outlined text-danger"

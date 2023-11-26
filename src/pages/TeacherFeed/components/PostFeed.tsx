@@ -86,7 +86,11 @@ export default function PostFeed(props: PostFeedProps) {
       >
         {posts.map((post) => {
           return (
-            <div className="container my-3" key={post.id} id={post.id}>
+            <div
+              className="container my-3"
+              key={post.id}
+              id={post.id.toString()}
+            >
               <div className="row w-100 ">
                 <div className="col-1 d-flex-flex-column px-0 border-end ">
                   <link

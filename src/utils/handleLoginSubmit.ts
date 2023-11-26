@@ -41,6 +41,8 @@ const loginHandleSubmit = async (
       localStorage.setItem('email', response.data.user.email);
       localStorage.setItem('firstName', response.data.user.firstName);
       localStorage.setItem('role', user_role);
+      localStorage.setItem('pp', response.data.pp);
+      localStorage.setItem('cover', response.data.cp);
 
       setUser({
         email: response.data.user.email,

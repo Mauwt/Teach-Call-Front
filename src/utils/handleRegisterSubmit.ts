@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
-import { LoginRes, RegisterReq } from '../api/types/Auth';
+import { LoginRes, RegisterReq, RegisterRes } from '../api/types/Auth';
 import validateRegisterForm from './validateRegisterForm';
 import AuthApi from '../api/AuthApi';
 import { UserAuth } from '../context/UserAuthContext';
@@ -9,7 +9,8 @@ const registerHandleSubmit = (
   e: React.FormEvent<HTMLFormElement>,
   user_role: string,
   navigate: NavigateFunction,
-  setUser: (currentUser: UserAuth | null) => void
+  setUser: (currentUser: UserAuth | null) => void,
+  setFormError: (formError: string | null) => void
 ) => {
   const formData = new FormData(e.currentTarget);
 
@@ -36,7 +37,7 @@ const registerHandleSubmit = (
     return;
   }
 
-  const tokenResponse: Promise<AxiosResponse<LoginRes>> = AuthApi.register(
+  const tokenResponse: Promise<AxiosResponse<RegisterRes>> = AuthApi.register(
     data,
     user_role
   );
@@ -60,8 +61,12 @@ const registerHandleSubmit = (
       if (user_role === 'teacher') return navigate('/professor-tour');
       return navigate(`/dashboard/${user_role}`);
     })
-    .catch(() => {
-      return navigate(`/`);
+    .catch((error) => {
+      if (error.response.status === 409) {
+        setFormError('Ya existe un usuario con ese correo');
+      } else {
+        setFormError('Error al crear el usuario');
+      }
     });
 };
 

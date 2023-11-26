@@ -10,6 +10,8 @@ type PostCardProps = {
   createdAt: string;
   liked: boolean;
   likesQ: number;
+  mediaUrl?: string;
+  mediaExtension?: string;
 };
 export default function PostCard(post: PostCardProps) {
   const [liked, setLiked] = useState(post.liked);
@@ -31,7 +33,7 @@ export default function PostCard(post: PostCardProps) {
   };
 
   return (
-    <div className="container" key={post.id} id={post.id}>
+    <div className="container mb-5" key={post.id} id={post.id}>
       <div className="row">
         <div className="col-1 d-flex-flex-column px-0 me-1 border-end">
           <link
@@ -58,8 +60,8 @@ export default function PostCard(post: PostCardProps) {
             <p className="text-dark">{likesQ}</p>
           </div>
         </div>
-        <div className="col-10 d-flex flex-colum">
-          <div className="d-flex-flex-shrink justify-content-center align-items-center">
+        <div className="col-10 d-flex flex-colum ">
+          <div className="justify-content-center align-items-center w-100 py-0">
             <div className="h5 mb-0">{post.title}</div>
             <div className="mb-2 text-muted" style={{ fontSize: 12 }}>
               <p className="text-dark mb-1">
@@ -69,6 +71,29 @@ export default function PostCard(post: PostCardProps) {
             </div>
             <div className="flex flex-colum justify-content-center align-items-center my-3">
               {post.body}
+            </div>
+            <div className=" w-100 ">
+              {post.mediaUrl && post.mediaExtension === 'png' && (
+                <div className="d-flex justify-content-center align-items-center">
+                  <img
+                    src={post.mediaUrl}
+                    alt="post"
+                    className="img-fluid"
+                    style={{ maxHeight: '250px' }}
+                  />
+                </div>
+              )}
+              {post.mediaUrl && post.mediaExtension === 'pdf' && (
+                <div className="d-flex justify-content-center align-items-center embed-responsive embed-responsive-4by3">
+                  <embed
+                    className="embed-responsive-item"
+                    src={post.mediaUrl}
+                    type="application/pdf"
+                    width="100%"
+                    height="600px"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

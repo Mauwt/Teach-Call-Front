@@ -21,9 +21,7 @@ export function getWeekNumber(weekOffset: number = 0) {
     (currentDate.getTime() - oneJan.getTime()) / 86400000
   );
 
-  // console.log({ numberOfDays, currentDate, oneJan, weekOffset });
-  // console.log(Math.ceil((currentDate.getDay() + 1 + numberOfDays) / 7));
-  return Math.ceil((currentDate.getDay() + 1 + numberOfDays) / 7);
+  return Math.ceil((currentDate.getDay() + numberOfDays) / 7);
 }
 
 export function getDayName(day: number) {

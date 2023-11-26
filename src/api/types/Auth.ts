@@ -14,6 +14,8 @@ export interface LoginReq {
 export interface LoginRes {
   token: string;
   user: User;
+  pp: string;
+  cp: string;
 }
 
 export type RegisterReq = {

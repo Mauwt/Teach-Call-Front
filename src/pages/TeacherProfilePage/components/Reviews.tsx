@@ -32,6 +32,17 @@ function Reviews() {
         className="overflow-auto d-flex flex-column reviews ps-0 ms-0 pe-1"
         style={{ height: '70vh' }}
       >
+        {reviews.length === 0 && (
+          <div className="d-flex flex-column align-items-center justify-content-center">
+            <span
+              className="text-center fw-semibold mt-5"
+              style={{ fontSize: 15 }}
+            >
+              Aun no tiene reviews, deberías publicar algo en tu sección de
+              comunidad
+            </span>
+          </div>
+        )}
         {reviews.map((review) => (
           <div key={review.id} className="card my-3">
             <div className="card-body">

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import registerHandleSubmit from '../utils/handleRegisterSubmit';
 import { UserAuthContext } from '../context/UserAuthContext';
 
@@ -10,11 +10,12 @@ interface Props {
 export default function StudentRegisterForm({ userRole }: Props) {
   const navigate = useNavigate();
   const { setUser } = useContext(UserAuthContext);
+  const [formError, setFormError] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      registerHandleSubmit(e, userRole, navigate, setUser);
+      registerHandleSubmit(e, userRole, navigate, setUser, setFormError);
     } catch (error) {
       console.log(error);
     }
@@ -117,6 +118,9 @@ export default function StudentRegisterForm({ userRole }: Props) {
               {' '}
             </div>
           </div>
+          {formError !== '' && (
+            <div className="alert alert-danger w-50 py-1 px-1">{formError}</div>
+          )}
 
           <button
             className="text-dark mx-auto my-2 btn btn-info btn-block mb-4 "

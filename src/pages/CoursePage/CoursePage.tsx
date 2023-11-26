@@ -59,15 +59,7 @@ export default function CoursePage() {
         className="container rounded-5 d-flex flex-column justify-content-center align-items-center "
         style={{ height: '100vh' }}
       >
-        <div
-          className="row w-100 "
-          style={{
-            position: 'fixed',
-            top: 0,
-            right: 0,
-            left: 0,
-          }}
-        >
+        <div className="w-100" style={{ minHeight: '150px' }}>
           <StudentNav />
         </div>
         <div className="row w-100">
@@ -163,7 +155,7 @@ export default function CoursePage() {
                   className="btn btn-primary w-50 mx-auto"
                   onClick={onClick}
                 >
-                  Comprar
+                  Reservar
                 </button>
               </div>
             </div>

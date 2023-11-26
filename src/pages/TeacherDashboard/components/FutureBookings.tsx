@@ -75,7 +75,7 @@ export default function FutureBookings() {
       <div
         className={`${isLastPage ? 'd-none' : 'd-flex'} justify-content-center`}
       >
-        {!isLastPage && (
+        {!isLastPage && futureBookings.length > 0 && (
           <button
             type="button"
             className="btn btn-primary mt-2 mb-3"

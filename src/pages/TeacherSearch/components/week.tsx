@@ -41,7 +41,7 @@ function daySlots(
     try {
       const response = await AvailabilityApi.getfreeTimeSlots(
         teacherId,
-        weekNum,
+        weekNum - 1,
         dayNum
       );
 
@@ -94,7 +94,6 @@ async function setWeekDays(weekOffset: number, teacherId: number) {
 
   document.getElementsByClassName('today')[0]?.classList.remove('today');
 
-  // comprobar que solo exista un componente week en el dom, un componente week se reconoce por la clase week-component, además si tiene un atributo data-professor-id, este debe ser igual al id del profesor que se está buscando
   const weekComponents = document.getElementsByClassName('week-component');
   const weekComponent = Array.from(weekComponents).find(
     (component) =>
@@ -114,7 +113,7 @@ async function setWeekDays(weekOffset: number, teacherId: number) {
   try {
     const response = await AvailabilityApi.getWeekAvailibilityById(
       teacherId,
-      weekNumber
+      weekNumber - 1
     );
 
     const { availableDays } = response.data;
@@ -186,7 +185,6 @@ export default function Week(prop: WeekProps) {
   };
 
   const handleSubmitBooking = async () => {
-    console.log(selectedCourseId, prop.teacherId, selectedSlotId);
     try {
       const response = await BookingApi.addBooking(
         selectedCourseId,

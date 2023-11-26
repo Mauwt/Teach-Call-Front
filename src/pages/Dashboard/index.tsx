@@ -5,7 +5,10 @@ import './styles.css';
 export default function dashboardstudent() {
   return (
     <div className="d-flex flex-column" style={{ height: '100vh' }}>
-      <StudentNav />
+      <div className="w-100" >
+        <StudentNav />
+      </div>
+
       <HomePage />
     </div>
   );

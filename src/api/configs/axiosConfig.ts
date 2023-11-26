@@ -1,9 +1,7 @@
 import axios from 'axios';
-// const VITE_API_URL = "http://127.0.0.1:8080/"
-
 
 const api = axios.create({
-  baseURL: "https://deploysalva-production.up.railway.app/",
+  baseURL: 'https://proyecto-final-teachcall-back-production.up.railway.app/',
 });
 
 export default api;

@@ -9,6 +9,9 @@ import {
 import AvailabilityApi from '../../../api/ProfessorAvailability';
 import CourseList from './CourseList';
 import BookingApi from '../../../api/Booking';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
 
 type WeekProps = {
   teacherId: number;
@@ -173,8 +176,10 @@ export default function Week(prop: WeekProps) {
   const [lastDayMonth, setLastDayMonth] = useState(0);
   const [selectedCourseId, setSelectedCourseId] = useState(0);
   const [selectedSlotId, setSelectedSlotId] = useState('');
-
+  const [loading, setLoading] = useState(false);
   const days = getWeekDays(weekOffset);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const handlePrevWeek = () => {
     setWeekOffset(weekOffset - 1);
@@ -187,24 +192,28 @@ export default function Week(prop: WeekProps) {
   };
 
   const handleSubmitBooking = async () => {
+    setLoading(true); // Activar animación de carga
     try {
-      const response = await BookingApi.addBooking(
+      await BookingApi.addBooking(
         selectedCourseId,
         prop.teacherId,
         selectedSlotId
       );
-      if (response.status === 200) {
-        document.getElementById('courseModal').classList.remove('show');
-      }
+      
+      setLoading(false); // Desactivar animación de carga
+      setModalMessage("Tu reserva se ha confirmado.");
+      setShowConfirmationModal(true);
     } catch (error) {
-      const modal = document.getElementById('courseModal');
-      modal.appendChild(
-        document.createTextNode(
-          'No se pudo agendar la clase, intentalo más tarde'
-        )
-      );
+      setLoading(false); // Desactivar animación de carga
+      if (error.response?.status === 409) {
+        setModalMessage("Ups, alguien más ya ha reservado.");
+      } else {
+        setModalMessage("Vuelve a intentarlo más tarde.");
+      }
+      setShowConfirmationModal(true);
     }
   };
+  
 
   useEffect(() => {
     setWeekDays(weekOffset, prop.teacherId);
@@ -216,6 +225,11 @@ export default function Week(prop: WeekProps) {
 
   return (
     <>
+       {loading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
       <div
         className="container-fluid m-0 p-0 mb-3 week-component"
         id={`week-${prop.teacherId}`}
@@ -410,6 +424,18 @@ export default function Week(prop: WeekProps) {
           </div>
         </div>
       </div>
+      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmación de Reserva</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowConfirmationModal(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
+

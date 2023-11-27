@@ -9,6 +9,9 @@ import {
 import AvailabilityApi from '../../../api/ProfessorAvailability';
 import CourseList from './CourseList';
 import BookingApi from '../../../api/Booking';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
 
 type WeekProps = {
   teacherId: number;
@@ -44,6 +47,8 @@ function daySlots(
         weekNum,
         dayNum
       );
+
+      console.log('slots for day', dayNum, weekNum);
 
       setDayInfo(response.data);
 
@@ -94,7 +99,6 @@ async function setWeekDays(weekOffset: number, teacherId: number) {
 
   document.getElementsByClassName('today')[0]?.classList.remove('today');
 
-  // comprobar que solo exista un componente week en el dom, un componente week se reconoce por la clase week-component, además si tiene un atributo data-professor-id, este debe ser igual al id del profesor que se está buscando
   const weekComponents = document.getElementsByClassName('week-component');
   const weekComponent = Array.from(weekComponents).find(
     (component) =>
@@ -172,12 +176,20 @@ export default function Week(prop: WeekProps) {
   const [lastDayMonth, setLastDayMonth] = useState(0);
   const [selectedCourseId, setSelectedCourseId] = useState(0);
   const [selectedSlotId, setSelectedSlotId] = useState('');
-
+  const [loading, setLoading] = useState(false);
   const days = getWeekDays(weekOffset);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [reloadWeek, setReloadWeek] = useState(false);
 
   const handlePrevWeek = () => {
     setWeekOffset(weekOffset - 1);
     setShowSlots(false);
+  };
+
+  const handleCloseModal = () => {
+    setShowConfirmationModal(false);
+    setReloadWeek(true);
   };
 
   const handleNextWeek = () => {
@@ -186,36 +198,50 @@ export default function Week(prop: WeekProps) {
   };
 
   const handleSubmitBooking = async () => {
-    console.log(selectedCourseId, prop.teacherId, selectedSlotId);
+    setLoading(true); // Activar animación de carga
     try {
-      const response = await BookingApi.addBooking(
+      await BookingApi.addBooking(
         selectedCourseId,
         prop.teacherId,
         selectedSlotId
       );
-      if (response.status === 200) {
-        document.getElementById('courseModal').classList.remove('show');
-      }
+      
+      setLoading(false); // Desactivar animación de carga
+      setModalMessage("Tu reserva se ha confirmado.");
+      setShowConfirmationModal(true);
     } catch (error) {
-      const modal = document.getElementById('courseModal');
-      modal.appendChild(
-        document.createTextNode(
-          'No se pudo agendar la clase, intentalo más tarde'
-        )
-      );
+      setLoading(false); // Desactivar animación de carga
+      if (error.response?.status === 500) {
+        setModalMessage("Vuelve a intentarlo más tarde.");
+      } else {
+        setModalMessage("Este horario ya no está disponible.");
+      }
+      setShowConfirmationModal(true);
     }
   };
 
+  useEffect(() => {
+    if (reloadWeek) {
+      setWeekDays(weekOffset, prop.teacherId);
+      setReloadWeek(false);
+    }
+  }, [reloadWeek, weekOffset, prop.teacherId]);
+  
   useEffect(() => {
     setWeekDays(weekOffset, prop.teacherId);
     setFirstDay(days[0].getDate());
     setFirstDayMonth(days[0].getMonth());
     setLastDay(days[5].getDate());
     setLastDayMonth(days[5].getMonth());
-  }, [weekOffset, prop.teacherId]);
+  },  [weekOffset, prop.teacherId]);
 
   return (
     <>
+       {loading && (
+        <div className="loading-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
       <div
         className="container-fluid m-0 p-0 mb-3 week-component"
         id={`week-${prop.teacherId}`}
@@ -410,6 +436,18 @@ export default function Week(prop: WeekProps) {
           </div>
         </div>
       </div>
+      <Modal show={showConfirmationModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmación de Reserva</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
+

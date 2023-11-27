@@ -161,6 +161,8 @@ export default function WeekScheduleForm(prop: WeekScheduleFormProps) {
     if (!userEmail) return navigate('/login');
     e.preventDefault();
 
+    console.log(`Enviando : ${weekNumber}`);
+
     sendWeekSchedule(
       prop.setAvailabilityStatus,
       prop.setShowForm,

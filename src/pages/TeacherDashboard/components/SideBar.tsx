@@ -2,9 +2,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserAuthContext } from '../../../context/UserAuthContext';
 import logoutHandleSubmit from '../../../utils/logOutOnClick';
+import defaultProfilePic from '../../../assets/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg';
 
 export default function StudentSideBar() {
-  const { user, setUser } = useContext(UserAuthContext);
+  const { setUser } = useContext(UserAuthContext);
   const navigate = useNavigate();
   const handleLogOut = () => {
     try {
@@ -74,13 +75,15 @@ export default function StudentSideBar() {
           aria-expanded="false"
         >
           <img
-            src="https://github.com/mdo.png"
+            src={localStorage.getItem('pp') || defaultProfilePic}
             alt="hugenerd"
             width="35"
             height="35"
             className="rounded-circle"
           />
-          <span className="d-none d-md-inline mx-1">{user?.firstName}</span>
+          <span className="d-none d-md-inline mx-1">
+            {localStorage.getItem('firstName')}
+          </span>
         </a>
         <ul
           className="dropdown-menu text-small shadow my-0"
@@ -92,9 +95,7 @@ export default function StudentSideBar() {
             </a>
           </li>
           <li>
-            <Link to="/change-password">
-              Change Password
-            </Link>
+            <Link to="/change-password">Change Password</Link>
           </li>
           <li>
             <Link to="/profile/teacher" className="dropdown-item">

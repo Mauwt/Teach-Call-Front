@@ -1,7 +1,5 @@
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import AuthApi from '../api/AuthApi';
 
@@ -35,30 +33,9 @@ function StickyNav() {
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px' }}
-              navbarScroll
-            >
-              <NavDropdown title="Estudiantes" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">
-                  Obten Premiun
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Recursos Gratuitos
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="Tutores" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">
-                  Tutor Premium
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/login">Beneficios</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-
+          <Navbar.Collapse className="justify-content-end" id="navbarScroll">
             <ul
-              className="d-block d-sm-flex list-group flex-row align-items-center "
+              className="d-block d-sm-flex list-group flex-row align-items-center  "
               style={{ whiteSpace: 'nowrap', listStyle: 'none' }}
             >
               <li

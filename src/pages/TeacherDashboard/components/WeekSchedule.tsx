@@ -98,7 +98,7 @@ async function setWeekDays(
       email,
       weekNumber
     );
-
+    console.log(`se trajo la semana${weekNumber}`);
     const { availableDays } = response.data;
 
     const currentDayNumber = new Date().getDay() - 1;
@@ -239,12 +239,7 @@ export default function WeekSchedule() {
           style={{ height: '50px' }}
         >
           {days.map((day) =>
-            daySlots(
-              day,
-              setDayInfo,
-              setAvailabilityStatus,
-              setShowSlotInfo
-            )
+            daySlots(day, setDayInfo, setAvailabilityStatus, setShowSlotInfo)
           )}
         </div>
         <div className="d-flex w-100 mt-2 mx-auto ">

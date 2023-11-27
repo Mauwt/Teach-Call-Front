@@ -52,7 +52,7 @@ const ProfessorApi = {
     return response;
   },
   changePassword: async (
-    email : string,
+    email: string,
     password: string
   ): Promise<AxiosResponse> => {
     const headers = {
@@ -128,7 +128,7 @@ const ProfessorApi = {
     });
     return response;
   },
-  
+
   getAllEduacationWithPaginationByEmail: async (
     email: string,
     page: number = 1
@@ -149,6 +149,59 @@ const ProfessorApi = {
     };
 
     const response = await api.get(`${API_PREFIX}/${id}`, { headers });
+    return response;
+  },
+  addProfilePicture: async (img: FormData): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.post(`${API_PREFIX}/media/profilepic`, img, {
+      headers,
+    });
+    return response;
+  },
+  getImg: async (fileType: string): Promise<AxiosResponse<string>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(`${API_PREFIX}/media/${fileType}`, {
+      headers,
+    });
+    return response;
+  },
+  addImage: async (
+    img: FormData,
+    fileType: string
+  ): Promise<AxiosResponse<any>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.post(`${API_PREFIX}/media/${fileType}`, img, {
+      headers,
+    });
+    return response;
+  },
+  getCoverPicture: async (): Promise<AxiosResponse<string>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.get(`${API_PREFIX}/media/coverpic`, {
+      headers,
+    });
+    return response;
+  },
+  deleteImg: async (filename: string): Promise<AxiosResponse<string>> => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    const response = await api.delete(`${API_PREFIX}/media/${filename}`, {
+      headers,
+    });
     return response;
   },
 };

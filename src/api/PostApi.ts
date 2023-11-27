@@ -38,28 +38,29 @@ const PostApi = {
     );
     return response;
   },
-  removeLike:async(postId:string) : Promise<AxiosResponse> => {
+  removeLike: async (postId: string): Promise<AxiosResponse> => {
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
-    const response = await api.delete(
-      `${API_PREFIX}/like/${postId}`,
-      { headers }
-    );
+    const response = await api.delete(`${API_PREFIX}/like/${postId}`, {
+      headers,
+    });
     return response;
-  }
-  ,
-  createPost: async (title: string, body: string): Promise<AxiosResponse> => {
+  },
+  createPost: async (
+    title: string,
+    body: string,
+    file: File
+  ): Promise<AxiosResponse> => {
     const headers = {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
 
-    const data = {
-      title,
-      body,
-    };
+    const data = new FormData();
+    data.append('title', title);
+    data.append('body', body);
+    data.append('file', file);
 
     const response = await api.post(`${API_PREFIX}`, data, { headers });
     return response;

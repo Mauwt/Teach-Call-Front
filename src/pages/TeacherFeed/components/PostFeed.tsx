@@ -6,8 +6,18 @@ type PostFeedProps = {
   recharge: boolean;
 };
 
+type Post = {
+  id: number;
+  title: string;
+  body: string;
+  likes: number;
+  createdAt: string;
+  mediaUrl: string;
+  mediaExtension: string;
+};
+
 export default function PostFeed(props: PostFeedProps) {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
 
@@ -17,7 +27,7 @@ export default function PostFeed(props: PostFeedProps) {
       setPosts(response.data.content);
       setIsLastPage(response.data.last);
       props.setRecharge(false);
-      console.log(response.data.content[0]);
+      console.log(response.data.content[1]);
     };
     fetchPosts();
   }, [currentPage, props.recharge]);
@@ -39,7 +49,7 @@ export default function PostFeed(props: PostFeedProps) {
     props.setRecharge(!props.recharge);
     console.log(postId);
   };
-  
+
   return (
     <>
       {posts.length === 0 && (
@@ -76,7 +86,11 @@ export default function PostFeed(props: PostFeedProps) {
       >
         {posts.map((post) => {
           return (
-            <div className="container my-3" key={post.id} id={post.id}>
+            <div
+              className="container my-3"
+              key={post.id}
+              id={post.id.toString()}
+            >
               <div className="row w-100 ">
                 <div className="col-1 d-flex-flex-column px-0 border-end ">
                   <link
@@ -92,7 +106,7 @@ export default function PostFeed(props: PostFeedProps) {
                       <span
                         className="material-symbols-outlined"
                         style={{ color: '#e33d3d' }}
-                        id={post.id}
+                        id={post.id.toString()}
                       >
                         heart_plus
                       </span>
@@ -117,6 +131,26 @@ export default function PostFeed(props: PostFeedProps) {
                     >
                       {post.body}
                     </div>
+                    {post.mediaUrl && post.mediaExtension === 'png' && (
+                      <div className="d-flex justify-content-center align-items-center mt-3">
+                        <img
+                          src={post.mediaUrl}
+                          alt="post"
+                          className="img-fluid"
+                          style={{ maxHeight: '250px' }}
+                        />
+                      </div>
+                    )}
+                    {post.mediaUrl && post.mediaExtension === 'pdf' && (
+                      <div className="d-flex justify-content-center align-items-center mt-3">
+                        <embed
+                          src={post.mediaUrl}
+                          type="application/pdf"
+                          width="100%"
+                          height="600px"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="col-1 d-flex-flex-column align-items-end mt-auto">
@@ -136,7 +170,7 @@ export default function PostFeed(props: PostFeedProps) {
                     </div>
                     <div className="d-flex justify-content-center align-items-center w-100 me-0">
                       <button
-                        id={post.id}
+                        id={post.id.toString()}
                         type="button"
                         className="btn btn-danger px-1"
                         style={{ fontSize: 12 }}

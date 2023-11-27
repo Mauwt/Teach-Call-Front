@@ -16,6 +16,7 @@ export type BookingDataProps = {
 };
 
 export function ClassCard(bookingData: BookingDataProps) {
+  console.log(bookingData);
   const bookingDate = getExplicitStringDate(bookingData.date);
   const bookingStartTime = bookingData.startTime.slice(0, 5);
 
@@ -88,8 +89,34 @@ export function ClassCard(bookingData: BookingDataProps) {
   );
 }
 
+type Professor = {
+  id: number;
+  lastName: string;
+  firstName: string;
+};
+
+type Course = {
+  description: string;
+  id: number;
+  title: string;
+};
+
+type TimeSlot = {
+  startTime: string;
+  id: number;
+  date: string;
+};
+
+type Booking = {
+  id: number;
+  link: string;
+  timeSlot: TimeSlot;
+  course: Course;
+  professor: Professor;
+};
+
 export default function FutureClasses() {
-  const [userBookings, setUserBookings] = useState([]);
+  const [userBookings, setUserBookings] = useState<Booking[]>([]);
   const [islastPage, setIsLastPage] = useState(false);
   const [page, setPage] = useState(0);
 
@@ -100,6 +127,7 @@ export default function FutureClasses() {
         setUserBookings(response.data.content);
         setIsLastPage(response.data.last);
         console.log(response);
+        console.log(userBookings);
       } catch (error) {
         console.log(error);
       }
@@ -112,22 +140,27 @@ export default function FutureClasses() {
       className="bookings d-flex flex-column flex-grow-2 rounded overflow-auto pe-2 me-3"
       style={{ height: '450px', backgroundColor: '#F8F9FA' }}
     >
-      {userBookings.map((booking: BookingDataProps) => (
-        <ClassCard
-          key={booking.title + booking.date + booking.startTime}
-          id={booking.id}
-          startTime={booking.startTime}
-          date={booking.date}
-          title={booking.title}
-          firstName={booking.firstName}
-          lastName={booking.lastName}
-          link={booking.link}
-        />
-      ))}
+      {userBookings.length > 0 &&
+        userBookings.map((booking: Booking) => (
+          <ClassCard
+            key={
+              booking.course.title +
+              booking.timeSlot.date.toString() +
+              booking.timeSlot.startTime
+            }
+            id={booking.id}
+            startTime={booking.timeSlot.startTime}
+            date={booking.timeSlot.date}
+            title={booking.course.title}
+            firstName={booking.professor.firstName}
+            lastName={booking.professor.lastName}
+            link={booking.link}
+          />
+        ))}
       <div
         className={`${islastPage ? 'd-none' : 'd-flex'} justify-content-center`}
       >
-        {!islastPage && (
+        {!islastPage && userBookings.length > 0 && (
           <button
             type="button"
             className="btn btn-primary mt-2 mb-3"
@@ -135,6 +168,9 @@ export default function FutureClasses() {
           >
             Ver más
           </button>
+        )}
+        {userBookings.length === 0 && (
+          <p className="text-muted text-center">No tienes clases agendadas</p>
         )}
       </div>
     </div>

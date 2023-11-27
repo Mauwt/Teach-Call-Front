@@ -33,9 +33,9 @@ function StickyNav() {
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
+          <Navbar.Collapse className="justify-content-end" id="navbarScroll">
             <ul
-              className="d-block d-sm-flex list-group flex-row align-items-center "
+              className="d-block d-sm-flex list-group flex-row align-items-center  "
               style={{ whiteSpace: 'nowrap', listStyle: 'none' }}
             >
               <li

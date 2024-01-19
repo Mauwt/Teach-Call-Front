@@ -87,11 +87,11 @@ export default function AddEducation(props: AddEducationProps) {
       await ProfessorApi.addDescription(userEmail, props.description);
 
       const startDay = startDate.getDate();
-      const startMonth = startDate.getMonth();
+      const startMonth = startDate.getMonth() + 1;
       const startYear = startDate.getFullYear();
 
       const endDay = endDate.getDate();
-      const endMonth = endDate.getMonth();
+      const endMonth = endDate.getMonth() + 1;
       const endYear = endDate.getFullYear();
 
       const StartDateFormatted = `${startDay
